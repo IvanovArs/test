@@ -58,5 +58,6 @@ public class Application implements Consumer<Event> {
             Surface s = ee.getSurface();
             s.getCanvas().clear(0xFF264653);
         }
+
     }
 }
