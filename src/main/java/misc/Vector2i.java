@@ -123,6 +123,9 @@ public class Vector2i {
                 ", " + y +
                 ')';
     }
+    public static int getColor(int a, int r, int g, int b) {
+        return ((a * 256 + r) * 256 + g) * 256 + b;
+    }
 
     @Override
     public boolean equals(Object o) {
