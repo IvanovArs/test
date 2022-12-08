@@ -2,10 +2,16 @@ package app;
 
 import io.github.humbleui.jwm.*;
 import io.github.humbleui.jwm.skija.EventFrameSkija;
+import io.github.humbleui.skija.Canvas;
+import io.github.humbleui.skija.Paint;
+import io.github.humbleui.skija.RRect;
 import io.github.humbleui.skija.Surface;
+import misc.Misc;
 
 import java.io.File;
 import java.util.function.Consumer;
+
+import static app.Colors.APP_BACKGROUND_COLOR;
 
 public class Application implements Consumer<Event> {
     /**
@@ -52,12 +58,26 @@ public class Application implements Consumer<Event> {
     public void accept(Event e) {
         if (e instanceof EventWindowClose) {
             App.terminate();
-        }else if (e instanceof EventWindowCloseRequest) {
+        } else if (e instanceof EventWindowCloseRequest) {
             window.close();
-        }else if (e instanceof EventFrameSkija ee) {
+        } else if (e instanceof EventFrameSkija ee) {
             Surface s = ee.getSurface();
-            s.getCanvas().clear(0xFF264653);
+            paint(s.getCanvas(), s.getWidth(), s.getHeight());
         }
+    }
 
+    public void paint(Canvas canvas, int height, int width) {
+        int count = canvas.save();
+        canvas.save();
+        canvas.clear(APP_BACKGROUND_COLOR);
+        int rX = width / 3;
+        int rY = height / 3;
+        // ширина и высота
+        int rWidth = width / 3;
+        int rHeight = height / 3;
+        Paint paint = new Paint();
+        paint.setColor(Misc.getColor(100, 255, 255, 255));
+        canvas.drawRRect(RRect.makeXYWH(rX, rY, rWidth, rHeight, 4), paint);
+        canvas.restoreToCount(count);
     }
 }
