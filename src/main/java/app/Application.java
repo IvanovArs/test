@@ -6,7 +6,7 @@ import io.github.humbleui.skija.Canvas;
 import io.github.humbleui.skija.Paint;
 import io.github.humbleui.skija.RRect;
 import io.github.humbleui.skija.Surface;
-import misc.Misc;
+import misc.Vector2i;
 
 import java.io.File;
 import java.util.function.Consumer;
