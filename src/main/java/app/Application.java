@@ -1,5 +1,9 @@
 package app;
 
+import Panels.PanelControl;
+import Panels.PanelHelp;
+import Panels.PanelLog;
+import Panels.PanelRendering;
 import controls.Label;
 import io.github.humbleui.jwm.*;
 import io.github.humbleui.jwm.skija.EventFrameSkija;
@@ -30,6 +34,19 @@ public class Application implements Consumer<Event> {
      * Первый заголовок
      */
     private final Label label3;
+    private final PanelHelp panelHelp;
+    /**
+     * панель курсора мыши
+     */
+    private final PanelControl panelControl;
+    /**
+     * панель рисования
+     */
+    private final PanelRendering panelRendering;
+    /**
+     * панель событий
+     */
+    private final PanelLog panelLog;
     public static final int C_RAD_IN_PX = 4;
     /**
      * отступы панелей
@@ -75,6 +92,25 @@ public class Application implements Consumer<Event> {
 
         if (window._layer == null)
             throw new RuntimeException("Нет доступных слоёв для создания");
+        panelRendering = new PanelRendering(
+                window, true, PANEL_BACKGROUND_COLOR, PANEL_PADDING, 5, 3, 0, 0,
+                3, 2
+        );
+        // создаём панель управления
+        panelControl = new PanelControl(
+                window, true, PANEL_BACKGROUND_COLOR, PANEL_PADDING, 5, 3, 3, 0,
+                2, 2
+        );
+        // создаём панель лога
+        panelLog = new PanelLog(
+                window, true, PANEL_BACKGROUND_COLOR, PANEL_PADDING, 5, 3, 0, 2,
+                3, 1
+        );
+        // создаём панель помощи
+        panelHelp = new PanelHelp(
+                window, true, PANEL_BACKGROUND_COLOR, PANEL_PADDING, 5, 3, 3, 2,
+                2, 1
+        );
 
     }
 
@@ -99,9 +135,10 @@ public class Application implements Consumer<Event> {
     public void paint(Canvas canvas, CoordinateSystem2i windowCS) {
         canvas.save();
         canvas.clear(APP_BACKGROUND_COLOR);
-        label.paint(canvas, windowCS);
-        label2.paint(canvas, windowCS);
-        label3.paint(canvas, windowCS);
+        panelRendering.paint(canvas, windowCS);
+        panelControl.paint(canvas, windowCS);
+        panelLog.paint(canvas, windowCS);
+        panelHelp.paint(canvas, windowCS);
         canvas.restore();
     }
 }
