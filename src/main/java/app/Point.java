@@ -124,4 +124,5 @@ public class Point {
     public int hashCode() {
         return Objects.hash(pointSet, pos);
     }
+    static final int POINT_SIZE = 3;
 }
