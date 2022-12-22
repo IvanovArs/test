@@ -1,5 +1,6 @@
 package app;
 
+import controls.Label;
 import io.github.humbleui.jwm.*;
 import io.github.humbleui.jwm.skija.EventFrameSkija;
 import io.github.humbleui.skija.Canvas;
@@ -13,12 +14,23 @@ import java.io.File;
 import java.util.function.Consumer;
 
 import static app.Colors.APP_BACKGROUND_COLOR;
+import static app.Colors.PANEL_BACKGROUND_COLOR;
 
 public class Application implements Consumer<Event> {
     /**
      *
      */
     private final Window window;
+    /**
+     * радиус скругления элементов
+     */
+    private final Label label;
+    public static final int C_RAD_IN_PX = 4;
+    /**
+     * отступы панелей
+     */
+    public static final int PANEL_PADDING = 5;
+
 
     public Application() {
         window = App.makeWindow();
@@ -49,6 +61,7 @@ public class Application implements Consumer<Event> {
 
         if (window._layer == null)
             throw new RuntimeException("Нет доступных слоёв для создания");
+        label = new Label(window, false, PANEL_BACKGROUND_COLOR, PANEL_PADDING, "Привет, мир!");
     }
 
     /**
@@ -72,9 +85,7 @@ public class Application implements Consumer<Event> {
     public void paint(Canvas canvas, CoordinateSystem2i windowCS) {
         canvas.save();
         canvas.clear(APP_BACKGROUND_COLOR);
-        Paint paint = new Paint();
-        paint.setColor(Vector2i.getColor(100, 255, 255, 255));
-        canvas.drawRRect(windowCS.getRRect(4), paint);
+        label.paint(canvas, windowCS);
         canvas.restore();
     }
 }
