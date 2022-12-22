@@ -4,13 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a795a012-fc6c-47d5-aa1d-9ce6aab65f5e" name="Changes" comment="adaptive layout">
-      <change afterPath="$PROJECT_DIR$/src/main/java/Panels/PanelControl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Panels/PanelHelp.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Panels/PanelLog.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Panels/PanelRendering.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/app/Application.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/Application.java" afterDir="false" />
+    <list default="true" id="a795a012-fc6c-47d5-aa1d-9ce6aab65f5e" name="Changes" comment="add task classes">
+      <change beforePath="$PROJECT_DIR$/src/main/java/CoordinateSystem2i.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/misc/CoordinateSystem2i.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -92,7 +87,7 @@
       <updated>1669626627895</updated>
       <workItem from="1669626629427" duration="3046000" />
       <workItem from="1669886803050" duration="1947000" />
-      <workItem from="1671697535991" duration="3168000" />
+      <workItem from="1671697535991" duration="3482000" />
     </task>
     <task id="LOCAL-00001" summary="events consumer works">
       <created>1669628539617</created>
@@ -171,7 +166,21 @@
       <option name="project" value="LOCAL" />
       <updated>1671700007924</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="4 panels">
+      <created>1671700723582</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1671700723582</updated>
+    </task>
+    <task id="LOCAL-00013" summary="add task classes">
+      <created>1671700978895</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1671700978895</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -198,6 +207,8 @@
     <MESSAGE value="render text" />
     <MESSAGE value="text centering works" />
     <MESSAGE value="adaptive layout" />
-    <option name="LAST_COMMIT_MESSAGE" value="adaptive layout" />
+    <MESSAGE value="4 panels" />
+    <MESSAGE value="add task classes" />
+    <option name="LAST_COMMIT_MESSAGE" value="add task classes" />
   </component>
 </project>
