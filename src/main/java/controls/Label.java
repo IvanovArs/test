@@ -1,5 +1,6 @@
 package controls;
 
+import Panels.GridPanel;
 import io.github.humbleui.jwm.Event;
 import io.github.humbleui.jwm.Window;
 import io.github.humbleui.skija.Canvas;
@@ -14,7 +15,7 @@ import static app.Fonts.FONT12;
 /**
  * Заголовок
  */
-public class Label extends Panel {
+public class Label extends GridPanel {
     /**
      * Текст заголовка
      */
@@ -33,8 +34,10 @@ public class Label extends Panel {
      * @param padding         отступы
      * @param text            текст
      */
-    public Label(Window window, boolean drawBG, int backgroundColor, int padding, String text) {
-        super(window, drawBG, backgroundColor, padding);
+    public Label(Window window, boolean drawBG, int backgroundColor, int padding,
+                 int gridWidth, int gridHeight, int gridX, int gridY, int colspan, int rowspan,
+                 String text, boolean centered, boolean vcentered) {
+        super(window, drawBG, backgroundColor, padding, gridWidth, gridHeight, gridX, gridY, colspan, rowspan);
         this.text = text;
         this.centered = centered;
         this.vcentered = vcentered;

@@ -4,8 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a795a012-fc6c-47d5-aa1d-9ce6aab65f5e" name="Changes" comment="render text">
+    <list default="true" id="a795a012-fc6c-47d5-aa1d-9ce6aab65f5e" name="Changes" comment="text centering works">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Panels/Panel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Panels/Panel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/app/Application.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/Application.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/controls/Label.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controls/Label.java" afterDir="false" />
     </list>
@@ -89,7 +90,7 @@
       <updated>1669626627895</updated>
       <workItem from="1669626629427" duration="3046000" />
       <workItem from="1669886803050" duration="1947000" />
-      <workItem from="1671697535991" duration="1598000" />
+      <workItem from="1671697535991" duration="2228000" />
     </task>
     <task id="LOCAL-00001" summary="events consumer works">
       <created>1669628539617</created>
@@ -154,7 +155,14 @@
       <option name="project" value="LOCAL" />
       <updated>1671698791311</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="text centering works">
+      <created>1671699316296</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1671699316296</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -179,6 +187,7 @@
     <MESSAGE value="skija connnected" />
     <MESSAGE value="canvas works" />
     <MESSAGE value="render text" />
-    <option name="LAST_COMMIT_MESSAGE" value="render text" />
+    <MESSAGE value="text centering works" />
+    <option name="LAST_COMMIT_MESSAGE" value="text centering works" />
   </component>
 </project>

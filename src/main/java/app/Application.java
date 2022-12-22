@@ -25,6 +25,11 @@ public class Application implements Consumer<Event> {
      * радиус скругления элементов
      */
     private final Label label;
+    private final Label label2;
+    /**
+     * Первый заголовок
+     */
+    private final Label label3;
     public static final int C_RAD_IN_PX = 4;
     /**
      * отступы панелей
@@ -33,9 +38,17 @@ public class Application implements Consumer<Event> {
 
 
     public Application() {
-        Label label1;
+
         window = App.makeWindow();
-        label1 = new Label(window, true, PANEL_BACKGROUND_COLOR, PANEL_PADDING, "Привет, мир!");
+
+        label = new Label(window, true, PANEL_BACKGROUND_COLOR, PANEL_PADDING,
+                4, 4, 1, 1, 1, 1, "Привет, мир!", true, true);
+        label2 = new Label(window, true, PANEL_BACKGROUND_COLOR, PANEL_PADDING,
+                4, 4, 0, 3, 1, 1, "Второй заголовок", true, true);
+
+        label3 = new Label(window, true, PANEL_BACKGROUND_COLOR, PANEL_PADDING,
+                4, 4, 2, 0, 1, 1, "Это тоже заголовок", true, true);
+
         window.setEventListener(this);
         window.setTitle("Java 2D");
         window.setWindowSize(900, 900);
@@ -62,9 +75,7 @@ public class Application implements Consumer<Event> {
 
         if (window._layer == null)
             throw new RuntimeException("Нет доступных слоёв для создания");
-        label1 = new Label(window, false, PANEL_BACKGROUND_COLOR, PANEL_PADDING, "Привет, мир!");
 
-        label = label1;
     }
 
     /**
@@ -80,8 +91,8 @@ public class Application implements Consumer<Event> {
         } else if (e instanceof EventFrameSkija ee) {
             Surface s = ee.getSurface();
             paint(s.getCanvas(), new CoordinateSystem2i(
-                    s.getWidth() / 3, s.getHeight() / 3,
-                    s.getWidth() / 3,  s.getHeight() / 3));
+                    s.getWidth(), s.getHeight()
+            ));
         }
     }
 
@@ -89,6 +100,8 @@ public class Application implements Consumer<Event> {
         canvas.save();
         canvas.clear(APP_BACKGROUND_COLOR);
         label.paint(canvas, windowCS);
+        label2.paint(canvas, windowCS);
+        label3.paint(canvas, windowCS);
         canvas.restore();
     }
 }
