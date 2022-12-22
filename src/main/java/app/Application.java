@@ -33,9 +33,10 @@ public class Application implements Consumer<Event> {
 
 
     public Application() {
+        Label label1;
         window = App.makeWindow();
+        label1 = new Label(window, true, PANEL_BACKGROUND_COLOR, PANEL_PADDING, "Привет, мир!");
         window.setEventListener(this);
-
         window.setTitle("Java 2D");
         window.setWindowSize(900, 900);
         window.setWindowPosition(100, 100);
@@ -61,7 +62,9 @@ public class Application implements Consumer<Event> {
 
         if (window._layer == null)
             throw new RuntimeException("Нет доступных слоёв для создания");
-        label = new Label(window, false, PANEL_BACKGROUND_COLOR, PANEL_PADDING, "Привет, мир!");
+        label1 = new Label(window, false, PANEL_BACKGROUND_COLOR, PANEL_PADDING, "Привет, мир!");
+
+        label = label1;
     }
 
     /**

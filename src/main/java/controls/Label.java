@@ -19,7 +19,11 @@ public class Label extends Panel {
      * Текст заголовка
      */
     public String text;
-
+    protected boolean centered;
+    /**
+     * Флаг, нужно ли выравнивать текст по центру по вертикали
+     */
+    protected boolean vcentered;
     /**
      * Панель на сетке
      *
@@ -32,6 +36,8 @@ public class Label extends Panel {
     public Label(Window window, boolean drawBG, int backgroundColor, int padding, String text) {
         super(window, drawBG, backgroundColor, padding);
         this.text = text;
+        this.centered = centered;
+        this.vcentered = vcentered;
     }
 
     /**
@@ -45,6 +51,10 @@ public class Label extends Panel {
         canvas.save();
         try (TextLine line = TextLine.make(text, FONT12)) {
             int capHeight = (int) FONT12.getMetrics().getCapHeight();
+            if (centered)
+                canvas.translate((windowCS.getSize().x - line.getWidth()) / 2.0f, 0);
+            if (vcentered)
+                canvas.translate(0, (windowCS.getSize().y - capHeight) / 2.0f);
             try (Paint fg = new Paint().setColor(LABEL_TEXT_COLOR)) {
                 canvas.drawTextLine(line, 0, capHeight, fg);
             }
