@@ -17,6 +17,7 @@ public class PanelLog extends GridPanel {
      */
     private final Label label;
 
+
     /**
      * Панель управления
      *
