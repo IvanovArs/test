@@ -68,6 +68,24 @@ public class Application implements Consumer<Event> {
         label3 = new Label(window, true, PANEL_BACKGROUND_COLOR, PANEL_PADDING,
                 4, 4, 2, 0, 1, 1, "Это тоже заголовок", true, true);
 
+        panelRendering = new PanelRendering(
+                window, true, PANEL_BACKGROUND_COLOR, PANEL_PADDING, 5, 3, 0, 0,
+                3, 2
+        );
+        panelControl = new PanelControl(
+                window, true, PANEL_BACKGROUND_COLOR, PANEL_PADDING, 5, 3, 3, 0,
+                2, 2
+        );
+        panelLog = new PanelLog(
+                window, true, PANEL_BACKGROUND_COLOR, PANEL_PADDING, 5, 3, 0, 2,
+                3, 1
+        );
+        panelHelp = new PanelHelp(
+                window, true, PANEL_BACKGROUND_COLOR, PANEL_PADDING, 5, 3, 3, 2,
+                2, 1
+        );
+
+
         window.setEventListener(this);
         window.setTitle("Java 2D");
         window.setWindowSize(900, 900);
@@ -94,25 +112,7 @@ public class Application implements Consumer<Event> {
 
         if (window._layer == null)
             throw new RuntimeException("Нет доступных слоёв для создания");
-        panelRendering = new PanelRendering(
-                window, true, PANEL_BACKGROUND_COLOR, PANEL_PADDING, 5, 3, 0, 0,
-                3, 2
-        );
-        // создаём панель управления
-        panelControl = new PanelControl(
-                window, true, PANEL_BACKGROUND_COLOR, PANEL_PADDING, 5, 3, 3, 0,
-                2, 2
-        );
-        // создаём панель лога
-        panelLog = new PanelLog(
-                window, true, PANEL_BACKGROUND_COLOR, PANEL_PADDING, 5, 3, 0, 2,
-                3, 1
-        );
-        // создаём панель помощи
-        panelHelp = new PanelHelp(
-                window, true, PANEL_BACKGROUND_COLOR, PANEL_PADDING, 5, 3, 3, 2,
-                2, 1
-        );
+
 
     }
 
@@ -122,16 +122,21 @@ public class Application implements Consumer<Event> {
      */
     @Override
     public void accept(Event e) {
+        // если событие - это закрытие окна
         if (e instanceof EventWindowClose) {
+            // завершаем работу приложения
             App.terminate();
         } else if (e instanceof EventWindowCloseRequest) {
             window.close();
         } else if (e instanceof EventFrameSkija ee) {
+            // получаем поверхность рисования
             Surface s = ee.getSurface();
-            paint(s.getCanvas(), new CoordinateSystem2i(
-                    s.getWidth(), s.getHeight()
-            ));
+            // очищаем её канвас заданным цветом
+            paint(s.getCanvas(), new CoordinateSystem2i(s.getWidth(), s.getHeight()));
         }
+        panelControl.accept(e);
+        panelRendering.accept(e);
+        panelLog.accept(e);
     }
 
     public void paint(Canvas canvas, CoordinateSystem2i windowCS) {

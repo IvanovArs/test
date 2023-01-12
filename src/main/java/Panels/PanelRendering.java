@@ -3,11 +3,13 @@ package Panels;
 import app.Point;
 import app.Task;
 import io.github.humbleui.jwm.Event;
+import io.github.humbleui.jwm.EventMouseButton;
 import io.github.humbleui.jwm.Window;
 import io.github.humbleui.skija.Canvas;
 import misc.CoordinateSystem2d;
 import misc.CoordinateSystem2i;
 import misc.Vector2d;
+import misc.Vector2i;
 
 import java.util.ArrayList;
 import java.util.concurrent.ThreadLocalRandom;
@@ -46,14 +48,10 @@ public class PanelRendering extends GridPanel {
         CoordinateSystem2d cs = new CoordinateSystem2d(
                 new Vector2d(-10.0, -10.0), new Vector2d(10.0, 10.0)
         );
-
-        // создаём массив случайных точек
         ArrayList<Point> points = new ArrayList<>();
         for (int i = 0; i < 10; i++) {
-            // получаем случайное множество
             Point.PointSet pointSet = ThreadLocalRandom.current().nextBoolean() ?
                     Point.PointSet.FIRST_SET : Point.PointSet.SECOND_SET;
-            // добавляем точку в случайном месте ОСК в указанное множество
             points.add(new Point(cs.getRandomCoords(), pointSet));
         }
         task = new Task(cs, points);
@@ -67,9 +65,14 @@ public class PanelRendering extends GridPanel {
      */
     @Override
     public void accept(Event e) {
-
+        super.accept(e);
+        if (e instanceof EventMouseButton ee) {
+            if (lastMove != null && lastInside) {
+                task.click(lastWindowCS.getRelativePos(lastMove), ee.getButton());
+                window.requestFrame();
+            }
+        }
     }
-
     /**
      * Метод под рисование в конкретной реализации
      *
