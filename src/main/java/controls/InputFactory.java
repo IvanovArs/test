@@ -78,5 +78,8 @@ public class InputFactory {
     private InputFactory() {
         throw new AssertionError("Вызов этого конструктора запрещён!");
     }
-
+    public static void defocusAll() {
+        for (Input input : inputs)
+            input.focused = false;
+    }
 }

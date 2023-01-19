@@ -1,13 +1,12 @@
 package controls;
 
-import Panels.GridPanel;
+import panels.GridPanel;
 import io.github.humbleui.jwm.Event;
 import io.github.humbleui.jwm.Window;
 import io.github.humbleui.skija.Canvas;
 import io.github.humbleui.skija.Paint;
 import io.github.humbleui.skija.TextLine;
 import misc.CoordinateSystem2i;
-import Panels.Panel;
 
 import static app.Colors.LABEL_TEXT_COLOR;
 import static app.Fonts.FONT12;

@@ -1,22 +1,17 @@
 package app;
 
-import Panels.PanelControl;
-import Panels.PanelHelp;
-import Panels.PanelLog;
-import Panels.PanelRendering;
+import panels.PanelControl;
+import panels.PanelHelp;
+import panels.PanelLog;
+import panels.PanelRendering;
 import controls.Label;
 import io.github.humbleui.jwm.*;
 import io.github.humbleui.jwm.skija.EventFrameSkija;
 import io.github.humbleui.skija.Canvas;
-import io.github.humbleui.skija.Paint;
-import io.github.humbleui.skija.RRect;
 import io.github.humbleui.skija.Surface;
-import misc.CoordinateSystem2d;
 import misc.CoordinateSystem2i;
-import misc.Vector2i;
 
 import java.io.File;
-import java.util.ArrayList;
 import java.util.function.Consumer;
 
 import static app.Colors.APP_BACKGROUND_COLOR;

@@ -1,4 +1,4 @@
-package Panels;
+package panels;
 
 import app.Point;
 import controls.Label;

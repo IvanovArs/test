@@ -1,7 +1,7 @@
-package Panels;
+package panels;
 
-import Panels.GridPanel;
 import app.Task;
+import java.util.ArrayList;
 import controls.Input;
 import controls.InputFactory;
 import controls.Label;
@@ -9,6 +9,9 @@ import controls.MultiLineLabel;
 import io.github.humbleui.jwm.*;
 import io.github.humbleui.skija.Canvas;
 import misc.CoordinateSystem2i;
+import misc.Vector2i;
+
+import java.util.List;
 
 import static app.Application.PANEL_PADDING;
 import static app.Colors.FIELD_BACKGROUND_COLOR;
@@ -22,6 +25,14 @@ public class PanelControl extends GridPanel {
      * Текст задания
      */
     MultiLineLabel task;
+    /**
+     * Заголовки
+     */
+    public List<Label> labels;
+    /**
+     * Поля ввода
+     */
+    public List<Input> inputs;
 
     /**
      * Панель управления
@@ -43,18 +54,27 @@ public class PanelControl extends GridPanel {
     ) {
         super(window, drawBG, color, padding, gridWidth, gridHeight, gridX, gridY, colspan, rowspan);
 
-        // задание
+        inputs = new ArrayList<>();
+        labels = new ArrayList<>();
+
         task = new MultiLineLabel(
                 window, false, backgroundColor, PANEL_PADDING,
                 6, 7, 0, 0, 6, 2, Task.TASK_TEXT,
                 false, true);
-        xLabel = new Label(window, false, backgroundColor, PANEL_PADDING,
+        Label xLabel = new Label(window, false, backgroundColor, PANEL_PADDING,
                 6, 7, 0, 2, 1, 1, "X", true, true);
-
-        xField = InputFactory.getInput(window, false, FIELD_BACKGROUND_COLOR, PANEL_PADDING,
+        labels.add(xLabel);
+        Input xField = InputFactory.getInput(window, false, FIELD_BACKGROUND_COLOR, PANEL_PADDING,
                 6, 7, 1, 2, 2, 1, "0.0", true,
                 FIELD_TEXT_COLOR);
-
+        inputs.add(xField);
+        Label yLabel = new Label(window, false, backgroundColor, PANEL_PADDING,
+                6, 7, 3, 2, 1, 1, "Y", true, true);
+        labels.add(yLabel);
+        Input yField = InputFactory.getInput(window, false, FIELD_BACKGROUND_COLOR, PANEL_PADDING,
+                6, 7, 4, 2, 2, 1, "0.0", true,
+                FIELD_TEXT_COLOR);
+        inputs.add(yField);
     }
 
     /**
@@ -64,10 +84,36 @@ public class PanelControl extends GridPanel {
      */
     @Override
     public void accept(Event e) {
-        // вызываем обработчик предка
         super.accept(e);
-        // передаём обработку полю ввода X
-        xField.accept(e);
+        if (e instanceof EventMouseMove ee) {
+            for (Input input : inputs)
+                input.accept(ee);
+        } else if (e instanceof EventMouseButton ee) {
+            if (!lastInside || !ee.isPressed())
+                return;
+
+            Vector2i relPos = lastWindowCS.getRelativePos(lastMove);
+            for (Input input : inputs) {
+                if (input.contains(relPos)) {
+                    input.setFocus();
+                }
+            }
+            window.requestFrame();
+        } else if (e instanceof EventTextInput ee) {
+            for (Input input : inputs) {
+                if (input.isFocused()) {
+                    input.accept(ee);
+                }
+            }
+            window.requestFrame();
+        } else if (e instanceof EventKey ee) {
+            for (Input input : inputs) {
+                if (input.isFocused()) {
+                    input.accept(ee);
+                }
+            }
+            window.requestFrame();
+        }
     }
 
     /**
@@ -79,12 +125,12 @@ public class PanelControl extends GridPanel {
     @Override
     public void paintImpl(Canvas canvas, CoordinateSystem2i windowCS) {
         task.paint(canvas, windowCS);
-        xLabel.paint(canvas, windowCS);
-        xField.paint(canvas, windowCS);
+        for (Input input : inputs) {
+            input.paint(canvas, windowCS);
+        }
+
+        for (Label label : labels) {
+            label.paint(canvas, windowCS);
+        }
     }
-    Label xLabel;
-    /**
-     * поле ввода x координаты
-     */
-    Input xField;
 }

@@ -1,10 +1,8 @@
-package Panels;
+package panels;
 
 import io.github.humbleui.jwm.Window;
 import io.github.humbleui.skija.Canvas;
 import misc.CoordinateSystem2i;
-
-import java.awt.*;
 
 public abstract class GridPanel extends Panel {
     /**

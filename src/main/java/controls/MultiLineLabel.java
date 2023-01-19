@@ -1,6 +1,6 @@
 package controls;
 
-import Panels.GridPanel;
+import panels.GridPanel;
 import io.github.humbleui.jwm.Window;
 import io.github.humbleui.skija.Canvas;
 import io.github.humbleui.skija.Paint;

@@ -1,19 +1,15 @@
-package Panels;
+package panels;
 
 import app.Point;
 import app.Task;
-import controls.InputFactory;
 import io.github.humbleui.jwm.Event;
 import io.github.humbleui.jwm.EventMouseButton;
 import io.github.humbleui.jwm.Window;
 import io.github.humbleui.skija.Canvas;
-import io.github.humbleui.skija.Rect;
 import misc.CoordinateSystem2d;
 import misc.CoordinateSystem2i;
 import misc.Vector2d;
-import misc.Vector2i;
 
-import javax.swing.*;
 import java.util.ArrayList;
 import java.util.concurrent.ThreadLocalRandom;
 

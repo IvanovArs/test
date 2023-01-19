@@ -1,6 +1,6 @@
 package controls;
 
-import Panels.GridPanel;
+import panels.GridPanel;
 import io.github.humbleui.jwm.*;
 import io.github.humbleui.skija.*;
 import misc.CoordinateSystem2i;
@@ -82,7 +82,7 @@ public class Input extends GridPanel {
                 canvas.translate(LOCAL_PADDING, y);
                 paint.setColor(textColor);
                 canvas.drawTextLine(line, 0, 0, paint);
-                if (InputFactory.cursorDraw()) {
+                if (focused && InputFactory.cursorDraw()) {
                     canvas.translate(line.getWidth(), 0);
                     canvas.drawRect(Rect.makeXYWH(0, metrics.getAscent(), 2, metrics.getHeight()), paint);
                 }
@@ -200,5 +200,15 @@ public class Input extends GridPanel {
      */
     public String getText() {
         return text;
+    }
+    boolean focused = false;
+    public void setFocus() {
+        // снимаем фокус со всех полей ввода
+        InputFactory.defocusAll();
+        // выделяем текущее поле ввода
+        this.focused= true;
+    }
+    public boolean isFocused() {
+        return focused;
     }
 }

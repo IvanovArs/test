@@ -1,4 +1,4 @@
-package Panels;
+package panels;
 
 import controls.Label;
 import io.github.humbleui.jwm.*;
