@@ -1,5 +1,6 @@
 package app;
 
+import controls.InputFactory;
 import panels.PanelControl;
 import panels.PanelHelp;
 import panels.PanelLog;
@@ -155,6 +156,7 @@ public class Application implements Consumer<Event> {
                             return;
 
                         }
+                        case TAB -> InputFactory.nextTab();
                     }
             }
         }
