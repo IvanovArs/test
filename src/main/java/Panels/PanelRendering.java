@@ -2,15 +2,18 @@ package Panels;
 
 import app.Point;
 import app.Task;
+import controls.InputFactory;
 import io.github.humbleui.jwm.Event;
 import io.github.humbleui.jwm.EventMouseButton;
 import io.github.humbleui.jwm.Window;
 import io.github.humbleui.skija.Canvas;
+import io.github.humbleui.skija.Rect;
 import misc.CoordinateSystem2d;
 import misc.CoordinateSystem2i;
 import misc.Vector2d;
 import misc.Vector2i;
 
+import javax.swing.*;
 import java.util.ArrayList;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -65,11 +68,15 @@ public class PanelRendering extends GridPanel {
      */
     @Override
     public void accept(Event e) {
+        // вызываем обработчик предка
         super.accept(e);
         if (e instanceof EventMouseButton ee) {
+            // если последнее положение мыши сохранено и курсор был внутри
             if (lastMove != null && lastInside) {
-                task.click(lastWindowCS.getRelativePos(lastMove), ee.getButton());
-                window.requestFrame();
+                // если событие - нажатие мыши
+                if (ee.isPressed())
+                    // обрабатываем клик по задаче
+                    task.click(lastWindowCS.getRelativePos(lastMove), ee.getButton());
             }
         }
     }
@@ -82,5 +89,15 @@ public class PanelRendering extends GridPanel {
     @Override
     public void paintImpl(Canvas canvas, CoordinateSystem2i windowCS) {
         task.paint(canvas, windowCS);
+    }
+    public static void save() {
+        PanelLog.info("save");
+    }
+
+    /**
+     * Загрузить файл
+     */
+    public static void load() {
+        PanelLog.info("load");
     }
 }
