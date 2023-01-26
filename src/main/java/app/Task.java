@@ -1,9 +1,13 @@
 package app;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import io.github.humbleui.jwm.MouseButton;
 import io.github.humbleui.skija.Canvas;
 import io.github.humbleui.skija.Paint;
 import io.github.humbleui.skija.Rect;
+import lombok.Getter;
 import misc.CoordinateSystem2d;
 import misc.CoordinateSystem2i;
 import misc.Vector2d;
@@ -14,7 +18,7 @@ import java.util.ArrayList;
 import java.util.concurrent.ThreadLocalRandom;
 
 import static app.Point.POINT_SIZE;
-
+@JsonTypeInfo(use = JsonTypeInfo.Id.CLASS, property = "@class")
 public class Task {
     /**
      * Текст задачи
@@ -24,12 +28,14 @@ public class Task {
             Заданы два множества точек в вещественном
             пространстве. Требуется построить пересечение
             и разность этих множеств""";
+    @Getter
     private final CoordinateSystem2d ownCS;
-    private CoordinateSystem2i lastWindowCS = null;
     /**
      * Список точек
      */
+    @Getter
     private final ArrayList<Point> points;
+    private CoordinateSystem2i lastWindowCS = null;
 
     /**
      * Задача
@@ -37,7 +43,11 @@ public class Task {
      * @param ownCS  СК задачи
      * @param points массив точек
      */
-    public Task(CoordinateSystem2d ownCS, ArrayList<Point> points) {
+    @JsonCreator
+    public Task(
+            @JsonProperty("ownCS") CoordinateSystem2d ownCS,
+            @JsonProperty("points") ArrayList<Point> points
+    ) {
         this.ownCS = ownCS;
         this.points = points;
     }

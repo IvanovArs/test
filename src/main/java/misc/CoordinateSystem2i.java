@@ -1,5 +1,8 @@
 package misc;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import io.github.humbleui.skija.RRect;
 import io.github.humbleui.skija.Rect;
 
@@ -52,9 +55,6 @@ public class CoordinateSystem2i {
      *
      * @return случайные координаты внутри СК
      */
-    public Vector2i getRandomCoords() {
-        return Vector2i.rand(min, max);
-    }
 
     /**
      * Возвращает относительное положение вектора в СК
@@ -129,9 +129,6 @@ public class CoordinateSystem2i {
      *
      * @return размер СК
      */
-    public Vector2i getSize() {
-        return size;
-    }
 
     /**
      * Строковое представление объекта вида:
@@ -214,5 +211,22 @@ public class CoordinateSystem2i {
                 (x - coordinateSystem.min.x) * (size.x - 1) / (coordinateSystem.size.x - 1) + min.x,
                 (y - coordinateSystem.min.y) * (size.y - 1) / (coordinateSystem.size.y - 1) + min.y
         );
+    }
+    @JsonIgnore
+    public Vector2i getRandomCoords() {
+        return Vector2i.rand(min, max);
+    }
+    /**
+     * Получить размер СК
+     *
+     * @return размер СК
+     */
+    @JsonIgnore
+    public Vector2i getSize() {
+        return size;
+    }
+    @JsonCreator
+    public CoordinateSystem2i(@JsonProperty("min") Vector2i min, @JsonProperty("max") Vector2i max) {
+        this(min.x, min.y, max.x - min.x, max.y - min.x);
     }
 }
