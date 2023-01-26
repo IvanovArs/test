@@ -77,9 +77,9 @@ public class Task {
     }
 
     public void addPoint(Vector2d pos, Point.PointSet pointSet) {
+        solved = false;
         Point newPoint = new Point(pos, pointSet);
         points.add(newPoint);
-        // Добавляем в лог запись информации
         PanelLog.info("точка " + newPoint + " добавлена в " + newPoint.getSetName());
     }
     public void addRandomPoints(int cnt) {
@@ -93,16 +93,22 @@ public class Task {
                 addPoint(pos, Point.PointSet.SECOND_SET);
         }
     }
+    private boolean solved;
     public void clear() {
         points.clear();
+        solved = false;
     }
     public void solve() {
         PanelLog.warning("Вызван метод solve()\n Пока что решения нет");
+        solved = true;
     }
     /**
      * Отмена решения задачи
      */
     public void cancel() {
-
+        solved = false;
+    }
+    public boolean isSolved() {
+        return solved;
     }
 }

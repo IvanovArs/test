@@ -163,7 +163,13 @@ public List<Button> buttons;
                 6, 7, 3, 6, 3, 1, "Решить",
                 true, true);
         solve.setOnClick(() -> {
-            PanelRendering.task.solve();
+            if (!PanelRendering.task.isSolved()) {
+                PanelRendering.task.solve();
+                solve.text = "Сбросить";
+            } else {
+                cancelTask();
+            }
+            window.requestFrame();
         });
         buttons.add(solve);
     }
@@ -237,7 +243,6 @@ public List<Button> buttons;
     private final Button solve;
     private void cancelTask() {
         PanelRendering.task.cancel();
-        // Задаём новый текст кнопке решения
         solve.text = "Решить";
     }
 }
