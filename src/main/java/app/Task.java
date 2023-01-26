@@ -82,4 +82,17 @@ public class Task {
             else
                 addPoint(pos, Point.PointSet.SECOND_SET);
         }
-    }}
+    }
+    public void clear() {
+        points.clear();
+    }
+    public void solve() {
+        PanelLog.warning("Вызван метод solve()\n Пока что решения нет");
+    }
+    /**
+     * Отмена решения задачи
+     */
+    public void cancel() {
+
+    }
+}
