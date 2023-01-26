@@ -47,6 +47,9 @@ public class PanelRendering extends GridPanel {
         CoordinateSystem2d cs = new CoordinateSystem2d(
                 new Vector2d(-10.0, -10.0), new Vector2d(10.0, 10.0)
         );
+        task = new Task(cs, new ArrayList<>());
+        // добавляем в нё 10 случайных
+        task.addRandomPoints(10);
         ArrayList<Point> points = new ArrayList<>();
         for (int i = 0; i < 10; i++) {
             Point.PointSet pointSet = ThreadLocalRandom.current().nextBoolean() ?

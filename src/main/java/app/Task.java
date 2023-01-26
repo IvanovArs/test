@@ -8,8 +8,10 @@ import misc.CoordinateSystem2d;
 import misc.CoordinateSystem2i;
 import misc.Vector2d;
 import misc.Vector2i;
+import panels.PanelLog;
 
 import java.util.ArrayList;
+import java.util.concurrent.ThreadLocalRandom;
 
 import static app.Point.POINT_SIZE;
 
@@ -67,5 +69,17 @@ public class Task {
     public void addPoint(Vector2d pos, Point.PointSet pointSet) {
         Point newPoint = new Point(pos, pointSet);
         points.add(newPoint);
+        // Добавляем в лог запись информации
+        PanelLog.info("точка " + newPoint + " добавлена в " + newPoint.getSetName());
     }
-}
+    public void addRandomPoints(int cnt) {
+        CoordinateSystem2i addGrid = new CoordinateSystem2i(30, 30);
+        for (int i = 0; i < cnt; i++) {
+            Vector2i gridPos = addGrid.getRandomCoords();
+            Vector2d pos = ownCS.getCoords(gridPos, addGrid);
+            if (ThreadLocalRandom.current().nextBoolean())
+                addPoint(pos, Point.PointSet.FIRST_SET);
+            else
+                addPoint(pos, Point.PointSet.SECOND_SET);
+        }
+    }}
