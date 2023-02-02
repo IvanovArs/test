@@ -40,6 +40,7 @@ public class Task {
     @Getter
     private final ArrayList<Point> points;
     private CoordinateSystem2i lastWindowCS = null;
+    private static final float WHEEL_SENSITIVE = 0.001f;
 
     /**
      * Задача
@@ -170,5 +171,10 @@ public class Task {
             }
         }
         canvas.restore();
+    }
+    public void scale(float delta, Vector2i center) {
+        if (lastWindowCS == null) return;
+        Vector2d realCenter = ownCS.getCoords(center, lastWindowCS);
+        ownCS.scale(1 + delta * WHEEL_SENSITIVE, realCenter);
     }
 }
