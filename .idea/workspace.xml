@@ -4,10 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a795a012-fc6c-47d5-aa1d-9ce6aab65f5e" name="Changes" comment="float cs">
-      <change beforePath="$PROJECT_DIR$/src/main/java/app/Application.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/Application.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/app/Task.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/Task.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/misc/CoordinateSystem2i.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/misc/CoordinateSystem2i.java" afterDir="false" />
+    <list default="true" id="a795a012-fc6c-47d5-aa1d-9ce6aab65f5e" name="Changes" comment="solve button">
+      <change afterPath="$PROJECT_DIR$/src/main/java/UnitTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,7 +54,7 @@
       <recent name="C:\Users\ivanovav.24\IdeaProjects\untitled1\src\main\resources" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="JUnit.UnitTest">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Main" />
       <module name="untitled1" />
@@ -62,19 +62,43 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="JetRunConfigurationType">
+    <configuration name="UnitTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="untitled1" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="UnitTest" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
-      <option name="filePath" />
+    <configuration name="UnitTest" type="TestNG" temporary="true" nameIsGenerated="true">
+      <module name="untitled1" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="UnitTest" />
+      <option name="TEST_OBJECT" value="CLASS" />
+      <properties />
+      <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="UnitTest.secondTest" type="TestNG" temporary="true" nameIsGenerated="true">
+      <module name="untitled1" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="UnitTest" />
+      <option name="METHOD_NAME" value="secondTest" />
+      <option name="TEST_OBJECT" value="METHOD" />
+      <properties />
+      <listeners />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.UnitTest" />
+        <item itemvalue="TestNG.UnitTest" />
+        <item itemvalue="TestNG.UnitTest.secondTest" />
         <item itemvalue="Application.Main" />
       </list>
     </recent_temporary>
@@ -90,6 +114,11 @@
       <workItem from="1669626629427" duration="3046000" />
       <workItem from="1669886803050" duration="1947000" />
       <workItem from="1671697535991" duration="3791000" />
+      <workItem from="1673515596210" duration="254000" />
+      <workItem from="1673515921977" duration="2375000" />
+      <workItem from="1674119956313" duration="3107000" />
+      <workItem from="1674724149167" duration="3285000" />
+      <workItem from="1675329148478" duration="318000" />
     </task>
     <task id="LOCAL-00001" summary="events consumer works">
       <created>1669628539617</created>
@@ -189,7 +218,77 @@
       <option name="project" value="LOCAL" />
       <updated>1671701100743</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="adding points works">
+      <created>1673517575290</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1673517575290</updated>
+    </task>
+    <task id="LOCAL-00016" summary="in progress">
+      <created>1673517628543</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1673517628543</updated>
+    </task>
+    <task id="LOCAL-00017" summary="log works">
+      <created>1673518110893</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1673518110893</updated>
+    </task>
+    <task id="LOCAL-00018" summary="input works">
+      <created>1674121161780</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1674121161780</updated>
+    </task>
+    <task id="LOCAL-00019" summary="input select works">
+      <created>1674122605062</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1674122605062</updated>
+    </task>
+    <task id="LOCAL-00020" summary="input tab works">
+      <created>1674122828657</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1674122828657</updated>
+    </task>
+    <task id="LOCAL-00021" summary="random points">
+      <created>1674724973441</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1674724973441</updated>
+    </task>
+    <task id="LOCAL-00022" summary="control beginning">
+      <created>1674725285707</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1674725285707</updated>
+    </task>
+    <task id="LOCAL-00023" summary="json works">
+      <created>1674727017633</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1674727017633</updated>
+    </task>
+    <task id="LOCAL-00024" summary="solve button">
+      <created>1674727234920</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1674727234920</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -219,6 +318,26 @@
     <MESSAGE value="4 panels" />
     <MESSAGE value="add task classes" />
     <MESSAGE value="float cs" />
-    <option name="LAST_COMMIT_MESSAGE" value="float cs" />
+    <MESSAGE value="adding points works" />
+    <MESSAGE value="in progress" />
+    <MESSAGE value="log works" />
+    <MESSAGE value="input works" />
+    <MESSAGE value="input select works" />
+    <MESSAGE value="input tab works" />
+    <MESSAGE value="random points" />
+    <MESSAGE value="control beginning" />
+    <MESSAGE value="json works" />
+    <MESSAGE value="solve button" />
+    <option name="LAST_COMMIT_MESSAGE" value="solve button" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.lang.NullPointerException" package="java.lang" />
+          <option name="timeStamp" value="1" />
+        </breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
