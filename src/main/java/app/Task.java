@@ -5,10 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import io.github.humbleui.jwm.MouseButton;
-import io.github.humbleui.skija.Canvas;
-import io.github.humbleui.skija.Paint;
-import io.github.humbleui.skija.PaintMode;
-import io.github.humbleui.skija.Rect;
+import io.github.humbleui.skija.*;
 import lombok.Getter;
 import misc.CoordinateSystem2d;
 import misc.CoordinateSystem2i;
@@ -176,5 +173,21 @@ public class Task {
         if (lastWindowCS == null) return;
         Vector2d realCenter = ownCS.getCoords(center, lastWindowCS);
         ownCS.scale(1 + delta * WHEEL_SENSITIVE, realCenter);
+    }
+    @JsonIgnore
+    public Vector2d getRealPos(int x, int y, CoordinateSystem2i windowCS) {
+        return ownCS.getCoords(x, y, windowCS);
+    }
+    public void paintMouse(Canvas canvas, CoordinateSystem2i windowCS, Font font, Vector2i pos) {
+        // создаём перо
+        try (var paint = new Paint().setColor(TASK_GRID_COLOR)) {
+            canvas.save();
+            canvas.drawRect(Rect.makeXYWH(0, pos.y - 1, windowCS.getSize().x, 2), paint);
+            canvas.drawRect(Rect.makeXYWH(pos.x - 1, 0, 2, windowCS.getSize().y), paint);
+            canvas.translate(pos.x + 3, pos.y - 5);
+            Vector2d realPos = getRealPos(pos.x, pos.y, lastWindowCS);
+            canvas.drawString(realPos.toString(), 0, 0, font, paint);
+            canvas.restore();
+        }
     }
 }
