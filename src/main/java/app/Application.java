@@ -1,6 +1,7 @@
 package app;
 
 import controls.InputFactory;
+import misc.Stats;
 import panels.PanelControl;
 import panels.PanelHelp;
 import panels.PanelLog;
@@ -50,7 +51,6 @@ public class Application implements Consumer<Event> {
      * отступы панелей
      */
     public static final int PANEL_PADDING = 5;
-
 
     public Application() {
 
@@ -109,7 +109,7 @@ public class Application implements Consumer<Event> {
         if (window._layer == null)
             throw new RuntimeException("Нет доступных слоёв для создания");
 
-
+        Stats fpsStats = new Stats();
     }
 
     /**

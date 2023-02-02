@@ -10,6 +10,7 @@ import io.github.humbleui.jwm.Window;
 import io.github.humbleui.skija.Canvas;
 import misc.CoordinateSystem2d;
 import misc.CoordinateSystem2i;
+import misc.Stats;
 import misc.Vector2d;
 
 import java.io.File;
@@ -28,7 +29,6 @@ public class PanelRendering extends GridPanel {
      * Представление проблемы
      */
     public static Task task;
-
     /**
      * Панель управления
      *
@@ -63,7 +63,6 @@ public class PanelRendering extends GridPanel {
             points.add(new Point(cs.getRandomCoords(), pointSet));
         }
         task = new Task(cs, points);
-
     }
 
     /**
@@ -98,6 +97,7 @@ public class PanelRendering extends GridPanel {
     @Override
     public void paintImpl(Canvas canvas, CoordinateSystem2i windowCS) {
         task.paint(canvas, windowCS);
+        fpsStats.paint(canvas, windowCS, FONT12, padding);
         if (lastInside && lastMove != null)
             task.paintMouse(canvas, windowCS, FONT12, lastWindowCS.getRelativePos(lastMove));
     }
@@ -121,14 +121,13 @@ public class PanelRendering extends GridPanel {
         loadFromFile(path);
     }
     public static void loadFromFile(String path) {
-        // создаём загрузчик JSON
         ObjectMapper objectMapper = new ObjectMapper();
         try {
-            // считываем систему координат
             task = objectMapper.readValue(new File(path), Task.class);
             PanelLog.success("Файл " + path + " успешно загружен");
         } catch (IOException e) {
             PanelLog.error("Не получилось прочитать файл " + path + "\n" + e);
         }
     }
+    private final Stats fpsStats;
 }
