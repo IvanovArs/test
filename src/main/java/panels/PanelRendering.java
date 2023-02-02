@@ -94,6 +94,7 @@ public class PanelRendering extends GridPanel {
      * @param canvas   область рисования
      * @param windowCS СК окна
      */
+    private final Stats fpsStats;
     @Override
     public void paintImpl(Canvas canvas, CoordinateSystem2i windowCS) {
         task.paint(canvas, windowCS);
@@ -129,5 +130,4 @@ public class PanelRendering extends GridPanel {
             PanelLog.error("Не получилось прочитать файл " + path + "\n" + e);
         }
     }
-    private final Stats fpsStats;
 }
