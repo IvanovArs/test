@@ -7,6 +7,7 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import io.github.humbleui.jwm.MouseButton;
 import io.github.humbleui.skija.Canvas;
 import io.github.humbleui.skija.Paint;
+import io.github.humbleui.skija.PaintMode;
 import io.github.humbleui.skija.Rect;
 import lombok.Getter;
 import misc.CoordinateSystem2d;
@@ -18,8 +19,7 @@ import panels.PanelLog;
 import java.util.ArrayList;
 import java.util.concurrent.ThreadLocalRandom;
 
-import static app.Colors.CROSSED_COLOR;
-import static app.Colors.SUBTRACTED_COLOR;
+import static app.Colors.*;
 import static app.Point.POINT_SIZE;
 @JsonTypeInfo(use = JsonTypeInfo.Id.CLASS, property = "@class")
 public class Task {
@@ -36,6 +36,7 @@ public class Task {
     /**
      * Список точек
      */
+    private static final int DELIMITER_ORDER = 10;
     @Getter
     private final ArrayList<Point> points;
     private CoordinateSystem2i lastWindowCS = null;
@@ -59,22 +60,8 @@ public class Task {
 
     public void paint(Canvas canvas, CoordinateSystem2i windowCS) {
         lastWindowCS = windowCS;
-        canvas.save();
-        try (var paint = new Paint()) {
-            for (Point p : points) {
-                if (!solved) {
-                    paint.setColor(p.getColor());
-                } else {
-                    if (crossed.contains(p))
-                        paint.setColor(CROSSED_COLOR);
-                    else
-                        paint.setColor(SUBTRACTED_COLOR);
-                }
-                Vector2i windowPos = windowCS.getCoords(p.pos.x, p.pos.y, ownCS);
-                canvas.drawRect(Rect.makeXYWH(windowPos.x - POINT_SIZE, windowPos.y - POINT_SIZE, POINT_SIZE * 2, POINT_SIZE * 2), paint);
-            }
-        }
-        canvas.restore();
+        renderGrid(canvas, lastWindowCS);
+        renderTask(canvas, windowCS);
     }
 
     public void click(Vector2i pos, MouseButton mouseButton) {
@@ -147,4 +134,41 @@ public class Task {
     @Getter
     @JsonIgnore
     private final ArrayList<Point> single;
+    public void renderGrid(Canvas canvas, CoordinateSystem2i windowCS) {
+        canvas.save();
+        float strokeWidth = 0.03f / (float) ownCS.getSimilarity(windowCS).y + 0.5f;
+        try (var paint = new Paint().setMode(PaintMode.STROKE).setStrokeWidth(strokeWidth).setColor(TASK_GRID_COLOR)) {
+            for (int i = (int) (ownCS.getMin().x); i <= (int) (ownCS.getMax().x); i++) {
+                Vector2i windowPos = windowCS.getCoords(i, 0, ownCS);
+                float strokeHeight = i % DELIMITER_ORDER == 0 ? 5 : 2;
+                canvas.drawLine(windowPos.x, windowPos.y, windowPos.x, windowPos.y + strokeHeight, paint);
+                canvas.drawLine(windowPos.x, windowPos.y, windowPos.x, windowPos.y - strokeHeight, paint);
+            }
+            for (int i = (int) (ownCS.getMin().y); i <= (int) (ownCS.getMax().y); i++) {
+                Vector2i windowPos = windowCS.getCoords(0, i, ownCS);
+                float strokeHeight = i % 10 == 0 ? 5 : 2;
+                canvas.drawLine(windowPos.x, windowPos.y, windowPos.x + strokeHeight, windowPos.y, paint);
+                canvas.drawLine(windowPos.x, windowPos.y, windowPos.x - strokeHeight, windowPos.y, paint);
+            }
+        }
+        canvas.restore();
+    }
+    private void renderTask(Canvas canvas, CoordinateSystem2i windowCS) {
+        canvas.save();
+        try (var paint = new Paint()) {
+            for (Point p : points) {
+                if (!solved) {
+                    paint.setColor(p.getColor());
+                } else {
+                    if (crossed.contains(p))
+                        paint.setColor(CROSSED_COLOR);
+                    else
+                        paint.setColor(SUBTRACTED_COLOR);
+                }
+                Vector2i windowPos = windowCS.getCoords(p.pos.x, p.pos.y, ownCS);
+                canvas.drawRect(Rect.makeXYWH(windowPos.x - POINT_SIZE, windowPos.y - POINT_SIZE, POINT_SIZE * 2, POINT_SIZE * 2), paint);
+            }
+        }
+        canvas.restore();
+    }
 }

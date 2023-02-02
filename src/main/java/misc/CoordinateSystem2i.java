@@ -229,4 +229,24 @@ public class CoordinateSystem2i {
     public CoordinateSystem2i(@JsonProperty("min") Vector2i min, @JsonProperty("max") Vector2i max) {
         this(min.x, min.y, max.x - min.x, max.y - min.x);
     }
+    public Vector2i getSimilarity(CoordinateSystem2d coordinateSystem) {
+        return new Vector2i(
+                (int) ((size.x - 1) / (coordinateSystem.getSize().x)),
+                (int) ((size.y - 1) / (coordinateSystem.getSize().y))
+        );
+    }
+
+    /**
+     * Получить вектор подобия двух систем координат
+     * (значения единичного размера, указанного в переданнной в аргументах СК в текущей СК)
+     *
+     * @param coordinateSystem система координат, подобие с которой нужно получить
+     * @return вектор подобий вдоль соответствующиъ осей координат
+     */
+    public Vector2i getSimilarity(CoordinateSystem2i coordinateSystem) {
+        return new Vector2i(
+                (size.x - 1) / (coordinateSystem.getSize().x - 1),
+                (size.y - 1) / (coordinateSystem.getSize().y - 1)
+        );
+    }
 }
