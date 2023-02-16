@@ -201,9 +201,9 @@ public class PanelSelectFile extends Panel {
             pathInput.accept(e);
             // событие нажатия мыши
         } else if (e instanceof EventMouseButton ee) {
-            if (!lastInside|| !ee.isPressed()){
+            if (!lastInside || !ee.isPressed())
                 return;
-            }
+
 
             Vector2i relPos = lastWindowCS.getRelativePos(lastMove);
 
@@ -211,7 +211,9 @@ public class PanelSelectFile extends Panel {
             cancel.click(relPos);
             listPanel.accept(e);
             pathInput.accept(e);
+            // перерисовываем окно
             window.requestFrame();
+            // обработчик ввода текста
         } else if (e instanceof EventMouseScroll) {
             listPanel.accept(e);
         } else if (e instanceof EventKey ee) {
