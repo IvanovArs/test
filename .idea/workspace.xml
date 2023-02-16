@@ -4,13 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a795a012-fc6c-47d5-aa1d-9ce6aab65f5e" name="Changes" comment="solve button">
-      <change afterPath="$PROJECT_DIR$/src/main/java/dialogs/PanelInfo.java" afterDir="false" />
+    <list default="true" id="a795a012-fc6c-47d5-aa1d-9ce6aab65f5e" name="Changes" comment="info panel">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/app/Application.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/Application.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/app/Colors.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/Colors.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/panels/PanelControl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/panels/PanelControl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/panels/PanelRendering.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/panels/PanelRendering.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dialogs/PanelSelectFile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dialogs/PanelSelectFile.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -133,7 +129,7 @@
       <workItem from="1674119956313" duration="3107000" />
       <workItem from="1674724149167" duration="3285000" />
       <workItem from="1675329148478" duration="318000" />
-      <workItem from="1676537009303" duration="958000" />
+      <workItem from="1676537009303" duration="2827000" />
     </task>
     <task id="LOCAL-00001" summary="events consumer works">
       <created>1669628539617</created>
@@ -303,7 +299,28 @@
       <option name="project" value="LOCAL" />
       <updated>1674727234920</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="info panel">
+      <created>1676537988602</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1676537988602</updated>
+    </task>
+    <task id="LOCAL-00026" summary="info panel">
+      <created>1676538025267</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1676538025267</updated>
+    </task>
+    <task id="LOCAL-00027" summary="info panel">
+      <created>1676539428382</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1676539428382</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -343,7 +360,8 @@
     <MESSAGE value="control beginning" />
     <MESSAGE value="json works" />
     <MESSAGE value="solve button" />
-    <option name="LAST_COMMIT_MESSAGE" value="solve button" />
+    <MESSAGE value="info panel" />
+    <option name="LAST_COMMIT_MESSAGE" value="info panel" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
