@@ -177,4 +177,19 @@ public class Application implements Consumer<Event> {
     }
     public static final KeyModifier MODIFIER = Platform.CURRENT == Platform.MACOS ? KeyModifier.MAC_COMMAND : KeyModifier.CONTROL;
     private boolean maximizedWindow;
+    public enum Mode {
+        /**
+         * Основной режим работы
+         */
+        WORK,
+        /**
+         * Окно информации
+         */
+        INFO,
+        /**
+         * работа с файлами
+         */
+        FILE
+    }
+    public static Mode currentMode = Mode.WORK;
 }
