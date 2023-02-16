@@ -1,6 +1,7 @@
 package app;
 
 import controls.InputFactory;
+import dialogs.PanelInfo;
 import misc.Stats;
 import panels.PanelControl;
 import panels.PanelHelp;
@@ -16,8 +17,7 @@ import misc.CoordinateSystem2i;
 import java.io.File;
 import java.util.function.Consumer;
 
-import static app.Colors.APP_BACKGROUND_COLOR;
-import static app.Colors.PANEL_BACKGROUND_COLOR;
+import static app.Colors.*;
 
 public class Application implements Consumer<Event> {
     /**
@@ -110,6 +110,7 @@ public class Application implements Consumer<Event> {
             throw new RuntimeException("Нет доступных слоёв для создания");
 
         Stats fpsStats = new Stats();
+        panelInfo = new PanelInfo(window, true, DIALOG_BACKGROUND_COLOR, PANEL_PADDING);
     }
 
     /**
@@ -150,20 +151,33 @@ public class Application implements Consumer<Event> {
                 else
                     switch (eventKey.getKey()) {
                         case ESCAPE -> {
-                            window.close();
-                            // завершаем обработку, иначе уже разрушенный контекст
-                            // будет передан панелям
-                            return;
-
+                            // если сейчас основной режим
+                            if (currentMode.equals(Mode.WORK)) {
+                                // закрываем окно
+                                window.close();
+                                // завершаем обработку, иначе уже разрушенный контекст
+                                // будет передан панелям
+                                return;
+                            } else if (currentMode.equals(Mode.INFO)) {
+                                currentMode = Mode.WORK;
+                            }
                         }
+
+
                         case TAB -> InputFactory.nextTab();
                     }
             }
         }
-
-        panelControl.accept(e);
-        panelRendering.accept(e);
-        panelLog.accept(e);
+        switch (currentMode) {
+            case INFO -> panelInfo.accept(e);
+            case FILE -> {}
+            case WORK -> {
+                // передаём события на обработку панелям
+                panelControl.accept(e);
+                panelRendering.accept(e);
+                panelLog.accept(e);
+            }
+        }
     }
 
     public void paint(Canvas canvas, CoordinateSystem2i windowCS) {
@@ -173,6 +187,10 @@ public class Application implements Consumer<Event> {
         panelControl.paint(canvas, windowCS);
         panelLog.paint(canvas, windowCS);
         panelHelp.paint(canvas, windowCS);
+        switch (currentMode) {
+            case INFO -> panelInfo.paint(canvas, windowCS);
+            case FILE -> {}
+        }
         canvas.restore();
     }
     public static final KeyModifier MODIFIER = Platform.CURRENT == Platform.MACOS ? KeyModifier.MAC_COMMAND : KeyModifier.CONTROL;
@@ -192,4 +210,6 @@ public class Application implements Consumer<Event> {
         FILE
     }
     public static Mode currentMode = Mode.WORK;
+    private final PanelInfo panelInfo;
+
 }

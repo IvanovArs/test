@@ -29,6 +29,7 @@ public class PanelRendering extends GridPanel {
      * Представление проблемы
      */
     public static Task task;
+    private final Stats fpsStats;
     /**
      * Панель управления
      *
@@ -63,6 +64,7 @@ public class PanelRendering extends GridPanel {
             points.add(new Point(cs.getRandomCoords(), pointSet));
         }
         task = new Task(cs, points);
+        fpsStats = new Stats();
     }
 
     /**
@@ -94,7 +96,6 @@ public class PanelRendering extends GridPanel {
      * @param canvas   область рисования
      * @param windowCS СК окна
      */
-    private final Stats fpsStats;
     @Override
     public void paintImpl(Canvas canvas, CoordinateSystem2i windowCS) {
         task.paint(canvas, windowCS);
