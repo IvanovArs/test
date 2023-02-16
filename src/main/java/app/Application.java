@@ -2,6 +2,7 @@ package app;
 
 import controls.InputFactory;
 import dialogs.PanelInfo;
+import dialogs.PanelSelectFile;
 import misc.Stats;
 import panels.PanelControl;
 import panels.PanelHelp;
@@ -111,6 +112,7 @@ public class Application implements Consumer<Event> {
 
         Stats fpsStats = new Stats();
         panelInfo = new PanelInfo(window, true, DIALOG_BACKGROUND_COLOR, PANEL_PADDING);
+        panelSelectFile = new PanelSelectFile(window, true, DIALOG_BACKGROUND_COLOR, PANEL_PADDING);
     }
 
     /**
@@ -170,7 +172,7 @@ public class Application implements Consumer<Event> {
         }
         switch (currentMode) {
             case INFO -> panelInfo.accept(e);
-            case FILE -> {}
+            case FILE -> panelSelectFile.accept(e);
             case WORK -> {
                 // передаём события на обработку панелям
                 panelControl.accept(e);
@@ -189,7 +191,7 @@ public class Application implements Consumer<Event> {
         panelHelp.paint(canvas, windowCS);
         switch (currentMode) {
             case INFO -> panelInfo.paint(canvas, windowCS);
-            case FILE -> {}
+            case FILE -> panelSelectFile.paint(canvas, windowCS);
         }
         canvas.restore();
     }
@@ -211,5 +213,5 @@ public class Application implements Consumer<Event> {
     }
     public static Mode currentMode = Mode.WORK;
     private final PanelInfo panelInfo;
-
+    private final PanelSelectFile panelSelectFile;
 }
