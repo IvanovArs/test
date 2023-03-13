@@ -6,7 +6,12 @@
   <component name="ChangeListManager">
     <list default="true" id="a795a012-fc6c-47d5-aa1d-9ce6aab65f5e" name="Changes" comment="info panel">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dialogs/PanelSelectFile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dialogs/PanelSelectFile.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/UnitTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/UnitTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/app/Point.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/Point.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/app/Task.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/Task.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/panels/PanelControl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/panels/PanelControl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/panels/PanelLog.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/panels/PanelLog.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/panels/PanelRendering.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/panels/PanelRendering.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -70,17 +75,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="JetRunConfigurationType">
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
-      <option name="filePath" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="UnitTest" type="TestNG" temporary="true" nameIsGenerated="true">
       <module name="untitled1" />
       <option name="PACKAGE_NAME" value="" />
@@ -130,6 +124,8 @@
       <workItem from="1674724149167" duration="3285000" />
       <workItem from="1675329148478" duration="318000" />
       <workItem from="1676537009303" duration="2827000" />
+      <workItem from="1678353439716" duration="1372000" />
+      <workItem from="1678695647697" duration="1817000" />
     </task>
     <task id="LOCAL-00001" summary="events consumer works">
       <created>1669628539617</created>

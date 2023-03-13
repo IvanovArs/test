@@ -13,24 +13,6 @@ import java.util.Objects;
  */
 public class Point {
     /**
-     * Множества
-     */
-    public enum PointSet {
-        /**
-         * Первое
-         */
-        FIRST_SET,
-        /**
-         * Второе
-         */
-        SECOND_SET
-    }
-
-    /**
-     * Множество, которому принадлежит точка
-     */
-    protected final PointSet pointSet;
-    /**
      * Координаты точки
      */
     public final Vector2d pos;
@@ -39,12 +21,10 @@ public class Point {
      * Конструктор точки
      *
      * @param pos     положение точки
-     * @param setType множество, которому она принадлежит
      */
     @JsonCreator
-    public Point(@JsonProperty("pos") Vector2d pos, @JsonProperty("setType") PointSet setType) {
+    public Point(@JsonProperty("pos") Vector2d pos) {
         this.pos = pos;
-        this.pointSet = setType;
     }
 
 
@@ -55,10 +35,7 @@ public class Point {
      */
     @JsonIgnore
     public int getColor() {
-        return switch (pointSet) {
-            case FIRST_SET -> Misc.getColor(0xCC, 0x00, 0x00, 0xFF);
-            case SECOND_SET -> Misc.getColor(0xCC, 0x00, 0xFF, 0x0);
-        };
+            return Misc.getColor(0xCC, 0x00, 0x00, 0xFF);
     }
 
     /**
@@ -71,28 +48,6 @@ public class Point {
         return pos;
     }
 
-    /**
-     * Получить множество
-     *
-     * @return множество
-     */
-    public PointSet getSetType() {
-        return pointSet;
-    }
-
-
-    /**
-     * Получить название множества
-     *
-     * @return название множества
-     */
-    @JsonIgnore
-    public String getSetName() {
-        return switch (pointSet) {
-            case FIRST_SET -> "Первое множество";
-            case SECOND_SET -> "Второе множество";
-        };
-    }
 
     /**
      * Строковое представление объекта
@@ -102,7 +57,7 @@ public class Point {
     @Override
     public String toString() {
         return "Point{" +
-                "pointSetType=" + pointSet +
+                "pointSetType=" +
                 ", pos=" + pos +
                 '}';
     }
@@ -118,7 +73,7 @@ public class Point {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Point point = (Point) o;
-        return pointSet.equals(point.pointSet) && Objects.equals(pos, point.pos);
+        return equals(point) && Objects.equals(pos, point.pos);
     }
 
     /**
@@ -128,7 +83,7 @@ public class Point {
      */
     @Override
     public int hashCode() {
-        return Objects.hash(pointSet, pos);
+        return Objects.hash(pos);
     }
     static final int POINT_SIZE = 3;
 }

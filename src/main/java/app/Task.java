@@ -25,9 +25,12 @@ public class Task {
      */
     public static final String TASK_TEXT = """
             ПОСТАНОВКА ЗАДАЧИ:
-            Заданы два множества точек в вещественном
-            пространстве. Требуется построить пересечение
-            и разность этих множеств""";
+            Множество точек на плоскости назовем 
+            дваждытреугольным, если каждая точка этого 
+            множества является вершиной хотя бы двух 
+            правильных треугольников, построенных по 
+            точкам множества. Определить, удовлетворяет ли 
+            заданное множество точек этому свойству.""";
     @Getter
     private final CoordinateSystem2d ownCS;
     /**
@@ -66,27 +69,28 @@ public class Task {
         if (lastWindowCS == null) return;
         Vector2d taskPos = ownCS.getCoords(pos, lastWindowCS);
         if (mouseButton.equals(MouseButton.PRIMARY)) {
-            addPoint(taskPos, Point.PointSet.FIRST_SET);
+            addPoint(taskPos);
         } else if (mouseButton.equals(MouseButton.SECONDARY)) {
-            addPoint(taskPos, Point.PointSet.SECOND_SET);
+            addPoint(taskPos);
         }
     }
 
-    public void addPoint(Vector2d pos, Point.PointSet pointSet) {
+    public void addPoint(Vector2d pos) {
         solved = false;
-        Point newPoint = new Point(pos, pointSet);
+        Point newPoint = new Point(pos);
         points.add(newPoint);
-        PanelLog.info("точка " + newPoint + " добавлена в " + newPoint.getSetName());
+        PanelLog.info("точка " +newPoint + " добавлена");
     }
+
     public void addRandomPoints(int cnt) {
         CoordinateSystem2i addGrid = new CoordinateSystem2i(30, 30);
         for (int i = 0; i < cnt; i++) {
             Vector2i gridPos = addGrid.getRandomCoords();
             Vector2d pos = ownCS.getCoords(gridPos, addGrid);
             if (ThreadLocalRandom.current().nextBoolean())
-                addPoint(pos, Point.PointSet.FIRST_SET);
+                addPoint(pos);
             else
-                addPoint(pos, Point.PointSet.SECOND_SET);
+                addPoint(pos);
         }
     }
     private boolean solved;
@@ -101,7 +105,7 @@ public class Task {
             for (int j = i + 1; j < points.size(); j++) {
                 Point a = points.get(i);
                 Point b = points.get(j);
-                if (a.pos.equals(b.pos) && !a.pointSet.equals(b.pointSet)) {
+                if (a.pos.equals(b.pos) && !a.equals(b)) {
                     if (!crossed.contains(a)){
                         crossed.add(a);
                         crossed.add(b);

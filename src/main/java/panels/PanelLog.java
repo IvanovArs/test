@@ -177,9 +177,9 @@ public class PanelLog extends GridPanel {
             case SUCCESS -> Misc.getColor(144, 0, 255, 0);
         };
     }
-    public void addPoint(Vector2d pos, Point.PointSet pointSet) {
-        Point newPoint = new Point(pos, pointSet);
+    public void addPoint(Vector2d pos) {
+        Point newPoint = new Point(pos);
         // Добавляем в лог запись информации
-        PanelLog.info("точка " + newPoint + " добавлена в " + newPoint.getSetName());
+        PanelLog.info("точка " + newPoint);
     }
 }
