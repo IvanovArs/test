@@ -1,5 +1,6 @@
 package app;
 
+import com.beust.ah.A;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -18,6 +19,7 @@ import java.util.concurrent.ThreadLocalRandom;
 
 import static app.Colors.*;
 import static app.Point.POINT_SIZE;
+
 @JsonTypeInfo(use = JsonTypeInfo.Id.CLASS, property = "@class")
 public class Task {
     /**
@@ -39,6 +41,9 @@ public class Task {
     private static final int DELIMITER_ORDER = 10;
     @Getter
     private final ArrayList<Point> points;
+    @Getter
+    private final ArrayList<Triangle> triangles;
+
     private CoordinateSystem2i lastWindowCS = null;
     private static final float WHEEL_SENSITIVE = 0.001f;
 
@@ -55,8 +60,12 @@ public class Task {
     ) {
         this.ownCS = ownCS;
         this.points = points;
-        this.crossed = new ArrayList<>();
-        this.single = new ArrayList<>();
+        this.triangles = new ArrayList<>();
+        triangles.add(new Triangle(
+                new Point(new Vector2d(0, 1)),
+                new Point(new Vector2d(1, -2)),
+                new Point(new Vector2d(0, -1))
+        ));
     }
 
     public void paint(Canvas canvas, CoordinateSystem2i windowCS) {
@@ -79,7 +88,7 @@ public class Task {
         solved = false;
         Point newPoint = new Point(pos);
         points.add(newPoint);
-        PanelLog.info("точка " +newPoint + " добавлена");
+        PanelLog.info("точка " + newPoint + " добавлена");
     }
 
     public void addRandomPoints(int cnt) {
@@ -93,49 +102,39 @@ public class Task {
                 addPoint(pos);
         }
     }
+
+    public void triangles() {
+
+    }
+
     private boolean solved;
+
     public void clear() {
         points.clear();
         solved = false;
     }
+
     public void solve() {
-        crossed.clear();
-        single.clear();
         for (int i = 0; i < points.size(); i++) {
             for (int j = i + 1; j < points.size(); j++) {
                 Point a = points.get(i);
                 Point b = points.get(j);
-                if (a.pos.equals(b.pos) && !a.equals(b)) {
-                    if (!crossed.contains(a)){
-                        crossed.add(a);
-                        crossed.add(b);
-                    }
-                }
             }
         }
-        for (Point point : points)
-            if (!crossed.contains(point))
-                single.add(point);
         solved = true;
     }
+
     /**
      * Отмена решения задачи
      */
     public void cancel() {
         solved = false;
     }
+
     public boolean isSolved() {
         return solved;
     }
-    @Getter
-    @JsonIgnore
-    private final ArrayList<Point> crossed;
-    /**
-     * Список точек в разности
-     */
-    @Getter
-    @JsonIgnore
-    private final ArrayList<Point> single;
+
     public void renderGrid(Canvas canvas, CoordinateSystem2i windowCS) {
         canvas.save();
         float strokeWidth = 0.03f / (float) ownCS.getSimilarity(windowCS).y + 0.5f;
@@ -155,33 +154,39 @@ public class Task {
         }
         canvas.restore();
     }
+
     private void renderTask(Canvas canvas, CoordinateSystem2i windowCS) {
         canvas.save();
         try (var paint = new Paint()) {
             for (Point p : points) {
-                if (!solved) {
-                    paint.setColor(p.getColor());
-                } else {
-                    if (crossed.contains(p))
-                        paint.setColor(CROSSED_COLOR);
-                    else
-                        paint.setColor(SUBTRACTED_COLOR);
-                }
+                paint.setColor(p.getColor());
                 Vector2i windowPos = windowCS.getCoords(p.pos.x, p.pos.y, ownCS);
                 canvas.drawRect(Rect.makeXYWH(windowPos.x - POINT_SIZE, windowPos.y - POINT_SIZE, POINT_SIZE * 2, POINT_SIZE * 2), paint);
+            }
+            for (Triangle p : triangles) {
+                paint.setColor(p.getColor());
+                Vector2i windowPosA = windowCS.getCoords(p.getA().getPos().x, p.getA().getPos().y, ownCS);
+                Vector2i windowPosB = windowCS.getCoords(p.getB().getPos().x, p.getB().getPos().y, ownCS);
+                Vector2i windowPosC = windowCS.getCoords(p.getC().getPos().x, p.getC().getPos().y, ownCS);
+                canvas.drawLine(windowPosA.x, windowPosA.y, windowPosB.x, windowPosB.y,paint);
+                canvas.drawLine(windowPosB.x, windowPosB.y, windowPosC.x, windowPosC.y,paint);
+                canvas.drawLine(windowPosC.x, windowPosC.y, windowPosA.x, windowPosA.y,paint);
             }
         }
         canvas.restore();
     }
+
     public void scale(float delta, Vector2i center) {
         if (lastWindowCS == null) return;
         Vector2d realCenter = ownCS.getCoords(center, lastWindowCS);
         ownCS.scale(1 + delta * WHEEL_SENSITIVE, realCenter);
     }
+
     @JsonIgnore
     public Vector2d getRealPos(int x, int y, CoordinateSystem2i windowCS) {
         return ownCS.getCoords(x, y, windowCS);
     }
+
     public void paintMouse(Canvas canvas, CoordinateSystem2i windowCS, Font font, Vector2i pos) {
         // создаём перо
         try (var paint = new Paint().setColor(TASK_GRID_COLOR)) {
