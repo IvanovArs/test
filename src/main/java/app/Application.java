@@ -131,6 +131,7 @@ public class Application implements Consumer<Event> {
             Surface s = ee.getSurface();
             paint(s.getCanvas(), new CoordinateSystem2i(s.getWidth(), s.getHeight()));
         }
+
         else if (e instanceof EventKey eventKey) {
             if (eventKey.isPressed()) {
                 if (eventKey.isModifierDown(MODIFIER))
