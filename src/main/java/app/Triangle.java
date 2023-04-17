@@ -18,7 +18,7 @@ public class Triangle {
 
 
     @JsonCreator
-    public Triangle(@JsonProperty("a") Point a,@JsonProperty("b") Point b,@JsonProperty("c") Point c) {
+    public Triangle(@JsonProperty("a") Point a, @JsonProperty("b") Point b, @JsonProperty("c") Point c) {
         this.a = a;
         this.b = b;
         this.c = c;
@@ -36,7 +36,6 @@ public class Triangle {
     }
 
 
-
     /**
      * Строковое представление объекта
      *
@@ -46,7 +45,7 @@ public class Triangle {
     public String toString() {
         return "Point{" +
                 "pointSetType=" +
-                ", a=" + a.getPos() +", b="+b.getPos()+" ,c="+c.getPos()+
+                ", a=" + a.getPos() + ", b=" + b.getPos() + " ,c=" + c.getPos() +
                 '}';
     }
 
@@ -62,5 +61,24 @@ public class Triangle {
     @Override
     public int hashCode() {
         return Objects.hash(a, b, c);
+    }
+
+    public boolean isEquilateral() {
+        double dx1 = a.pos.x - b.pos.x;
+        double dy1 = a.pos.y - b.pos.y;
+
+        double dx2 = b.pos.x - c.pos.x;
+        double dy2 = b.pos.y - c.pos.y;
+
+        double dx3 = c.pos.x - a.pos.x;
+        double dy3 = c.pos.y - a.pos.y;
+
+        System.out.println(dx1 * dx1 + dy1 * dy1);
+        System.out.println(dx2 * dx2 + dy2 * dy2);
+        System.out.println(dx3 * dx3 + dy3 * dy3);
+
+        return Math.abs((dx1 * dx1 + dy1 * dy1) - (dx2 * dx2 + dy2 * dy2)) < 0.01 &&
+                Math.abs((dx2 * dx2 + dy2 * dy2) - (dx3 * dx3 + dy3 * dy3)) < 0.01 &&
+                Math.abs((dx3 * dx3 + dy3 * dy3) - (dx1 * dx1 + dy1 * dy1)) < 0.01;
     }
 }
