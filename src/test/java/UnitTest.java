@@ -28,12 +28,10 @@ public class UnitTest {
     @Test
     public void test2() {
         CoordinateSystem2d cs = new CoordinateSystem2d(-10, -10, 20, 20);
-
         ArrayList<Point> points = new ArrayList<>();
         points.add(new Point(new Vector2d(0, 0)));
         points.add(new Point(new Vector2d(2.829, 0)));
         points.add(new Point(new Vector2d(1.415, 2.449)));
-
         Task t = new Task(cs, points);
     }
 
@@ -50,13 +48,27 @@ public class UnitTest {
 
     @Test
     public void test4() {
+        CoordinateSystem2d cs = new CoordinateSystem2d(-10, -10, 20, 20);
+        ArrayList<Point> points = new ArrayList<>();
+        points.add(new Point(new Vector2d(0, 2.449)));
+        points.add(new Point(new Vector2d(2.829, 2.449)));
+        points.add(new Point(new Vector2d(1.415, 4.898)));
+        points.add(new Point(new Vector2d(1.415, 0)));
+        Task t = new Task(cs, points);
+        assert t.check1();
     }
 
     @Test
     public void test5() {
-    }
-
-    @Test
-    public void test6() {
+        CoordinateSystem2d cs = new CoordinateSystem2d(-10, -10, 20, 20);
+        ArrayList<Point> points = new ArrayList<>();
+        points.add(new Point(new Vector2d(0, 0)));
+        points.add(new Point(new Vector2d(2.829, 0)));
+        points.add(new Point(new Vector2d(1.415, 2.449)));
+        points.add(new Point(new Vector2d(0.707, 1.225)));
+        points.add(new Point(new Vector2d(1.415, 0)));
+        points.add(new Point(new Vector2d(2.121, 1.225)));
+        Task t = new Task(cs, points);
+        assert t.check2();
     }
 }
