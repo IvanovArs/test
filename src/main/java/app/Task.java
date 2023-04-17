@@ -66,6 +66,11 @@ public class Task {
                 new Point(new Vector2d(1, -2)),
                 new Point(new Vector2d(0, -1))
         ));
+        triangles.add(new Triangle(
+                new Point(new Vector2d(5, 2)),
+                new Point(new Vector2d(3, -1)),
+                new Point(new Vector2d(-2, 4))
+        ));
     }
 
     public void paint(Canvas canvas, CoordinateSystem2i windowCS) {

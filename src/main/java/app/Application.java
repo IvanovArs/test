@@ -131,11 +131,10 @@ public class Application implements Consumer<Event> {
             Surface s = ee.getSurface();
             paint(s.getCanvas(), new CoordinateSystem2i(s.getWidth(), s.getHeight()));
         }
+
         else if (e instanceof EventKey eventKey) {
-            // кнопка нажата с Ctrl
             if (eventKey.isPressed()) {
                 if (eventKey.isModifierDown(MODIFIER))
-                    // разбираем, какую именно кнопку нажали
                     switch (eventKey.getKey()) {
                         case W -> window.close();
                         case H -> window.minimize();
@@ -153,12 +152,8 @@ public class Application implements Consumer<Event> {
                 else
                     switch (eventKey.getKey()) {
                         case ESCAPE -> {
-                            // если сейчас основной режим
                             if (currentMode.equals(Mode.WORK)) {
-                                // закрываем окно
                                 window.close();
-                                // завершаем обработку, иначе уже разрушенный контекст
-                                // будет передан панелям
                                 return;
                             } else if (currentMode.equals(Mode.INFO)) {
                                 currentMode = Mode.WORK;
@@ -169,12 +164,12 @@ public class Application implements Consumer<Event> {
                         case TAB -> InputFactory.nextTab();
                     }
             }
+
         }
         switch (currentMode) {
             case INFO -> panelInfo.accept(e);
             case FILE -> panelSelectFile.accept(e);
             case WORK -> {
-                // передаём события на обработку панелям
                 panelControl.accept(e);
                 panelRendering.accept(e);
                 panelLog.accept(e);
