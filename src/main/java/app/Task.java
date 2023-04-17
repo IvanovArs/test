@@ -194,7 +194,38 @@ public class Task {
             canvas.restore();
         }
     }
-
+    public boolean check0() {
+        boolean s;
+        int [] arr=new int[points.size()];
+        for (Point p : points) {
+            for (int i = 0; i < points.size(); i++) {
+                for (int j = i + 1; j < points.size(); j++) {
+                    for (int k = j+1;k < points.size();k++) {
+                        Point a = points.get(i);
+                        Point b = points.get(j);
+                        Point c = points.get(k);
+                        Triangle triangle = new Triangle(a,b,c);
+                        s = triangle.isEquilateral();
+                        if (s==true){
+                            arr[i]+=1;
+                            arr[j]+=1;
+                            arr[k]+=1;
+                        }
+                    }
+                }
+            }
+        }
+        int x=0;
+        for (int i=0;i<arr.length;i++){
+            if (arr[i]==0){
+                x+=1;
+            }
+        }
+        if (x==arr.length) {
+            return true;
+        }
+        return false;
+    }
     public boolean check1() {
         boolean s;
         int [] arr=new int[points.size()];
