@@ -81,4 +81,22 @@ public class Triangle {
                 Math.abs((dx2 * dx2 + dy2 * dy2) - (dx3 * dx3 + dy3 * dy3)) < 0.01 &&
                 Math.abs((dx3 * dx3 + dy3 * dy3) - (dx1 * dx1 + dy1 * dy1)) < 0.01;
     }
+    public boolean isNotEquilateral() {
+        double dx1 = a.pos.x - b.pos.x;
+        double dy1 = a.pos.y - b.pos.y;
+
+        double dx2 = b.pos.x - c.pos.x;
+        double dy2 = b.pos.y - c.pos.y;
+
+        double dx3 = c.pos.x - a.pos.x;
+        double dy3 = c.pos.y - a.pos.y;
+
+        System.out.println(dx1 * dx1 + dy1 * dy1);
+        System.out.println(dx2 * dx2 + dy2 * dy2);
+        System.out.println(dx3 * dx3 + dy3 * dy3);
+
+        return Math.abs((dx1 * dx1 + dy1 * dy1) - (dx2 * dx2 + dy2 * dy2)) > 0.01 ||
+                Math.abs((dx2 * dx2 + dy2 * dy2) - (dx3 * dx3 + dy3 * dy3)) > 0.01 ||
+                Math.abs((dx3 * dx3 + dy3 * dy3) - (dx1 * dx1 + dy1 * dy1)) > 0.01;
+    }
 }

@@ -40,6 +40,12 @@ public class UnitTest {
 
     @Test
     public void test3() {
+        Triangle triangle = new Triangle(
+                new Point(new Vector2d(0, 0)),
+                new Point(new Vector2d(2.829, 0)),
+                new Point(new Vector2d(1.732, 2.449))
+        );
+        assert triangle.isNotEquilateral();
     }
 
     @Test
