@@ -150,8 +150,8 @@ public List<Button> buttons;
         solve.setOnClick(() -> {
             if (!PanelRendering.task.isSolved()) {
                 PanelRendering.task.solve();
-                String s = "Задача решена\n";
-                PanelInfo.show(s + "\n\nНажмите Esc, чтобы вернуться");
+                String s = "Задача решена\n" +
+                        "Ответ:"+(PanelRendering.task.isSolved()?"ДА":"НЕТ");
                 PanelLog.success(s);
                 solve.text = "Сбросить";
             } else {

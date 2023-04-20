@@ -5,7 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a795a012-fc6c-47d5-aa1d-9ce6aab65f5e" name="Changes" comment="5 tests">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/app/Task.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/Task.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/panels/PanelControl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/panels/PanelControl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/UnitTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/UnitTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -44,10 +46,13 @@
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
     "last_opened_file_path": "C:/Users/ivanovav.24/IdeaProjects/test",
+    "node.js.detected.package.eslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2"
+    "project.structure.side.proportion": "0.2",
+    "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
   <component name="RecentsManager">
@@ -58,7 +63,7 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.UnitTest">
+  <component name="RunManager" selected="Application.Main">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Main" />
       <module name="untitled1" />
@@ -100,8 +105,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.UnitTest" />
         <item itemvalue="Application.Main" />
+        <item itemvalue="JUnit.UnitTest" />
         <item itemvalue="TestNG.UnitTest" />
         <item itemvalue="TestNG.UnitTest.secondTest" />
       </list>
@@ -130,6 +135,9 @@
       <workItem from="1679300288689" duration="2435000" />
       <workItem from="1680514791480" duration="15000" />
       <workItem from="1681115335497" duration="5272000" />
+      <workItem from="1681912197769" duration="83000" />
+      <workItem from="1681912324489" duration="133000" />
+      <workItem from="1681977502100" duration="4799000" />
     </task>
     <task id="LOCAL-00001" summary="events consumer works">
       <created>1669628539617</created>

@@ -11,8 +11,8 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class UnitTest {
-    // ToDo: тест на равносторонность треугольников (и равносторонние, и не равносторонние) - хотя бы два
-    // ToDo: тест на дваждытреугольность множеств точек (и дваждытреугольные, и недваждытреугольые)
+    // тест на равносторонность треугольников (и равносторонние, и не равносторонние) - хотя бы два
+    // тест на дваждытреугольность множеств точек (и дваждытреугольные, и недваждытреугольые)
     // Причём несколько тестов: 1 - нет треугольников, 2 - однотреугольное, 3 - частично двухтреугольные
     // 4 - полность двухтрегуольное множество
     @Test
@@ -24,42 +24,17 @@ public class UnitTest {
         );
         assert triangle.isEquilateral();
     }
-
     @Test
     public void test2() {
-        CoordinateSystem2d cs = new CoordinateSystem2d(-10, -10, 20, 20);
-        ArrayList<Point> points = new ArrayList<>();
-        points.add(new Point(new Vector2d(0, 0)));
-        points.add(new Point(new Vector2d(2.829, 0)));
-        points.add(new Point(new Vector2d(1.415, 2.449)));
-        Task t = new Task(cs, points);
-    }
-
-
-    @Test
-    public void test3() {
         Triangle triangle = new Triangle(
                 new Point(new Vector2d(0, 0)),
-                new Point(new Vector2d(2.829, 0)),
-                new Point(new Vector2d(1.732, 2.449))
+                new Point(new Vector2d(5, 0)),
+                new Point(new Vector2d(2.5, 0.5))
         );
         assert triangle.isNotEquilateral();
     }
     @Test
-    public void test4() {
-        CoordinateSystem2d cs = new CoordinateSystem2d(-10, -10, 20, 20);
-        ArrayList<Point> points = new ArrayList<>();
-        points.add(new Point(new Vector2d(0, 4)));
-        points.add(new Point(new Vector2d(2, 2)));
-        points.add(new Point(new Vector2d(1, 4)));
-        points.add(new Point(new Vector2d(1, 0)));
-        points.add(new Point(new Vector2d(10, 4)));
-        points.add(new Point(new Vector2d(15, 0)));
-        Task t = new Task(cs, points);
-        assert t.check0();
-    }
-    @Test
-    public void test5() {
+    public void test3() {
         CoordinateSystem2d cs = new CoordinateSystem2d(-10, -10, 20, 20);
         ArrayList<Point> points = new ArrayList<>();
         points.add(new Point(new Vector2d(0, 2.449)));
@@ -69,9 +44,19 @@ public class UnitTest {
         Task t = new Task(cs, points);
         assert t.check1();
     }
-
     @Test
-    public void test6() {
+    public void test4() {
+        CoordinateSystem2d cs = new CoordinateSystem2d(-10, -10, 20, 20);
+        ArrayList<Point> points = new ArrayList<>();
+        points.add(new Point(new Vector2d(0, 0)));
+        points.add(new Point(new Vector2d(1, 1)));
+        points.add(new Point(new Vector2d(1.5, 4.5)));
+        points.add(new Point(new Vector2d(1.5, 0)));
+        Task t = new Task(cs, points);
+        assert t.check1();
+    }
+    @Test
+    public void test5() {
         CoordinateSystem2d cs = new CoordinateSystem2d(-10, -10, 20, 20);
         ArrayList<Point> points = new ArrayList<>();
         points.add(new Point(new Vector2d(0, 0)));
@@ -80,6 +65,19 @@ public class UnitTest {
         points.add(new Point(new Vector2d(0.707, 1.225)));
         points.add(new Point(new Vector2d(1.415, 0)));
         points.add(new Point(new Vector2d(2.121, 1.225)));
+        Task t = new Task(cs, points);
+        assert t.check2();
+    }
+    @Test
+    public void test6() {
+        CoordinateSystem2d cs = new CoordinateSystem2d(-10, -10, 20, 20);
+        ArrayList<Point> points = new ArrayList<>();
+        points.add(new Point(new Vector2d(0, 0)));
+        points.add(new Point(new Vector2d(6, 0)));
+        points.add(new Point(new Vector2d(1.3, 2.7)));
+        points.add(new Point(new Vector2d(0.1, 1.2)));
+        points.add(new Point(new Vector2d(1, 0)));
+        points.add(new Point(new Vector2d(2.5, 2.3)));
         Task t = new Task(cs, points);
         assert t.check2();
     }
