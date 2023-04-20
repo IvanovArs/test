@@ -1,5 +1,4 @@
 package app;
-
 import com.beust.ah.A;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -19,7 +18,6 @@ import java.util.concurrent.ThreadLocalRandom;
 
 import static app.Colors.*;
 import static app.Point.POINT_SIZE;
-
 @JsonTypeInfo(use = JsonTypeInfo.Id.CLASS, property = "@class")
 public class Task {
     /**
@@ -43,10 +41,8 @@ public class Task {
     private final ArrayList<Point> points;
     @Getter
     private final ArrayList<Triangle> triangles;
-
     private CoordinateSystem2i lastWindowCS = null;
     private static final float WHEEL_SENSITIVE = 0.001f;
-
     /**
      * Задача
      *
@@ -95,7 +91,6 @@ public class Task {
         }
     }
     private boolean solved;
-
     public void clear() {
         points.clear();
         solved = false;
@@ -109,18 +104,15 @@ public class Task {
         }
         solved = true;
     }
-
     /**
      * Отмена решения задачи
      */
     public void cancel() {
         solved = false;
     }
-
     public boolean isSolved() {
         return solved;
     }
-
     public void renderGrid(Canvas canvas, CoordinateSystem2i windowCS) {
         canvas.save();
         float strokeWidth = 0.03f / (float) ownCS.getSimilarity(windowCS).y + 0.5f;
