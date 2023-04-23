@@ -11,7 +11,6 @@ import panels.PanelPrimitives;
 import java.io.File;
 import java.util.function.Consumer;
 
-import static sun.java2d.loops.GraphicsPrimitiveMgr.primitives;
 
 /**
  * Класс окна приложения
