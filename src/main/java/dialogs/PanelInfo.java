@@ -70,9 +70,7 @@ public class PanelInfo extends Panel {
      * @param text текст
      */
     public static void show(String text) {
-        // задаём новый текст
         labelText = text;
-        // переключаем вывод приложения на режим информации
         Application.currentMode = Application.Mode.INFO;
     }
 
@@ -83,30 +81,20 @@ public class PanelInfo extends Panel {
      */
     @Override
     public void accept(Event e) {
-        // вызываем обработчик предка
         super.accept(e);
-        // событие движения мыши
         if (e instanceof EventMouseMove ee) {
             accept.checkOver(lastWindowCS.getRelativePos(new Vector2i(ee)));
-            // событие нажатия мыши
         } else if (e instanceof EventMouseButton ee) {
             if (!lastInside || !ee.isPressed())
                 return;
-
             Vector2i relPos = lastWindowCS.getRelativePos(lastMove);
             accept.click(relPos);
-            // перерисовываем окно
             window.requestFrame();
-            // обработчик ввода текста
         } else if (e instanceof EventKey ee) {
             if (ee.isPressed()) {
-                // получаем код клавиши
                 Key key = ee.getKey();
-                // перебираем варианты
                 switch (key) {
-                    // если esc
                     case ESCAPE -> Application.currentMode = Application.Mode.WORK;
-                    // если enter
                     case ENTER -> Application.currentMode = Application.Mode.WORK;
                 }
             }

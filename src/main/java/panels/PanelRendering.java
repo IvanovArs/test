@@ -115,8 +115,6 @@ public class PanelRendering extends GridPanel {
             }
         });
     }
-
-
     /**
      * Загрузить файл
      */

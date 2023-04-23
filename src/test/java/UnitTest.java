@@ -31,7 +31,7 @@ public class UnitTest {
                 new Point(new Vector2d(5, 0)),
                 new Point(new Vector2d(2.5, 0.5))
         );
-        assert triangle.isNotEquilateral();
+        assert !triangle.isNotEquilateral();
     }
     @Test
     public void test3() {
@@ -72,6 +72,17 @@ public class UnitTest {
     public void test6() {
         CoordinateSystem2d cs = new CoordinateSystem2d(-10, -10, 20, 20);
         ArrayList<Point> points = new ArrayList<>();
+        points.add(new Point(new Vector2d(0, 2.449)));
+        points.add(new Point(new Vector2d(2.829, 2.449)));
+        points.add(new Point(new Vector2d(1.415, 4.898)));
+        points.add(new Point(new Vector2d(1.415, 0)));
+        Task t = new Task(cs, points);
+        assert t.check2();
+    }
+    @Test
+    public void test7() {
+        CoordinateSystem2d cs = new CoordinateSystem2d(-10, -10, 20, 20);
+        ArrayList<Point> points = new ArrayList<>();
         points.add(new Point(new Vector2d(0, 0)));
         points.add(new Point(new Vector2d(6, 0)));
         points.add(new Point(new Vector2d(1.3, 2.7)));
@@ -81,4 +92,5 @@ public class UnitTest {
         Task t = new Task(cs, points);
         assert t.check2();
     }
+
 }

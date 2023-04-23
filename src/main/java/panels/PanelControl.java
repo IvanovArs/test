@@ -151,7 +151,8 @@ public List<Button> buttons;
             if (!PanelRendering.task.isSolved()) {
                 PanelRendering.task.solve();
                 String s = "Задача решена\n" +
-                        "Ответ:"+(PanelRendering.task.isSolved()?"ДА":"НЕТ");
+                        "Ответ: множество "+(PanelRendering.task.isSolved()?"дваждытреугольное":"недваждытеругольное");
+                PanelInfo.show(s + "\n\nНажмите Esc, чтобы вернуться");
                 PanelLog.success(s);
                 solve.text = "Сбросить";
             } else {
