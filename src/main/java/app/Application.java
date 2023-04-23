@@ -125,15 +125,5 @@ public class Application implements Consumer<Event> {
         // рисуем панели
         panelPrimitives.paint(canvas, windowCS);
         canvas.restore();
-        primitives.add((canvas, windowCS, p) -> {
-            // вершины треугольника
-            Vector2i pointA = new Vector2i(400, 200);
-            Vector2i pointB = new Vector2i(500, 600);
-            Vector2i pointC = new Vector2i(300, 400);
-            // рисуем его стороны
-            canvas.drawLine(pointA.x, pointA.y, pointB.x, pointB.y, p);
-            canvas.drawLine(pointB.x, pointB.y, pointC.x, pointC.y, p);
-            canvas.drawLine(pointC.x, pointC.y, pointA.x, pointA.y, p);
-        });
     }
 }
