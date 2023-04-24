@@ -102,6 +102,7 @@ public class Task {
     private boolean solved;
 
     public void clear() {
+
         points.clear();
         solved = false;
     }
