@@ -1,4 +1,5 @@
 package app;
+
 import com.beust.ah.A;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -18,6 +19,7 @@ import java.util.concurrent.ThreadLocalRandom;
 
 import static app.Colors.*;
 import static app.Point.POINT_SIZE;
+
 @JsonTypeInfo(use = JsonTypeInfo.Id.CLASS, property = "@class")
 public class Task {
     /**
@@ -40,9 +42,11 @@ public class Task {
     @Getter
     private final ArrayList<Point> points;
     @Getter
+    @JsonIgnore
     private final ArrayList<Triangle> triangles;
     private CoordinateSystem2i lastWindowCS = null;
     private static final float WHEEL_SENSITIVE = 0.001f;
+
     /**
      * Задача
      *
@@ -59,11 +63,13 @@ public class Task {
         this.triangles = new ArrayList<>();
 
     }
+
     public void paint(Canvas canvas, CoordinateSystem2i windowCS) {
         lastWindowCS = windowCS;
         renderGrid(canvas, lastWindowCS);
         renderTask(canvas, windowCS);
     }
+
     public void click(Vector2i pos, MouseButton mouseButton) {
         if (lastWindowCS == null) return;
         Vector2d taskPos = ownCS.getCoords(pos, lastWindowCS);
@@ -73,12 +79,14 @@ public class Task {
             addPoint(taskPos);
         }
     }
+
     public void addPoint(Vector2d pos) {
         solved = false;
         Point newPoint = new Point(pos);
         points.add(newPoint);
         PanelLog.info("точка " + newPoint + " добавлена");
     }
+
     public void addRandomPoints(int cnt) {
         CoordinateSystem2i addGrid = new CoordinateSystem2i(30, 30);
         for (int i = 0; i < cnt; i++) {
@@ -90,29 +98,40 @@ public class Task {
                 addPoint(pos);
         }
     }
+    @JsonIgnore
     private boolean solved;
+
     public void clear() {
         points.clear();
         solved = false;
     }
+
     public void solve() {
         for (int i = 0; i < points.size(); i++) {
             for (int j = i + 1; j < points.size(); j++) {
-                Point a = points.get(i);
-                Point b = points.get(j);
+                for (int k = j + 1; k < points.size(); k++) {
+                    Triangle triangle = new Triangle(points.get(i), points.get(j), points.get(k));
+                    if (triangle.isEquilateral()) {
+                        triangles.add(triangle);
+                    }
+                }
             }
         }
-        solved = true;
+
+        solved = check2();
     }
+
     /**
      * Отмена решения задачи
      */
     public void cancel() {
         solved = false;
     }
+
     public boolean isSolved() {
         return solved;
     }
+
     public void renderGrid(Canvas canvas, CoordinateSystem2i windowCS) {
         canvas.save();
         float strokeWidth = 0.03f / (float) ownCS.getSimilarity(windowCS).y + 0.5f;
@@ -150,6 +169,10 @@ public class Task {
                 canvas.drawLine(windowPosB.x, windowPosB.y, windowPosC.x, windowPosC.y, paint);
                 canvas.drawLine(windowPosC.x, windowPosC.y, windowPosA.x, windowPosA.y, paint);
             }
+
+            for (Triangle t : triangles) {
+                t.render(canvas, windowCS, ownCS);
+            }
         }
         canvas.restore();
     }
@@ -180,67 +203,68 @@ public class Task {
 
     public boolean check1() {
         boolean s;
-        int [] arr=new int[points.size()];
+        int[] arr = new int[points.size()];
         for (Point p : points) {
             for (int i = 0; i < points.size(); i++) {
                 for (int j = i + 1; j < points.size(); j++) {
-                    for (int k = j+1;k < points.size();k++) {
+                    for (int k = j + 1; k < points.size(); k++) {
                         Point a = points.get(i);
                         Point b = points.get(j);
                         Point c = points.get(k);
-                        Triangle triangle = new Triangle(a,b,c);
+                        Triangle triangle = new Triangle(a, b, c);
                         s = triangle.isEquilateral();
-                        if (s==true){
-                            arr[i]+=1;
-                            arr[j]+=1;
-                            arr[k]+=1;
+                        if (s == true) {
+                            arr[i] += 1;
+                            arr[j] += 1;
+                            arr[k] += 1;
                         }
                     }
                 }
             }
         }
-        int x=0;
-        for (int i=0;i<arr.length;i++){
-            if (arr[i]>=1){
-                x+=1;
+        int x = 0;
+        for (int i = 0; i < arr.length; i++) {
+            if (arr[i] >= 1) {
+                x += 1;
             }
         }
-        if (x==arr.length) {
+        if (x == arr.length) {
             return true;
         }
         return false;
     }
+
     public boolean check2() {
         triangles.clear();
         boolean s;
-        int [] arr=new int[points.size()];
+        int[] arr = new int[points.size()];
         for (Point p : points) {
             for (int i = 0; i < points.size(); i++) {
                 for (int j = i + 1; j < points.size(); j++) {
-                    for (int k = j+1;k < points.size();k++) {
+                    for (int k = j + 1; k < points.size(); k++) {
                         Point a = points.get(i);
                         Point b = points.get(j);
                         Point c = points.get(k);
-                        Triangle triangle = new Triangle(a,b,c);
+                        Triangle triangle = new Triangle(a, b, c);
                         s = triangle.isEquilateral();
 
-                        if (s==true){
+                        if (s == true) {
                             triangles.add(triangle);
-                            arr[i]+=1;
-                            arr[j]+=1;
-                            arr[k]+=1;
+                            arr[i] += 1;
+                            arr[j] += 1;
+                            arr[k] += 1;
                         }
                     }
                 }
             }
         }
-        int x=0;
-        for (int i=0;i<arr.length;i++){
-            if (arr[i]>=2){
-                x+=1;
+        int x = 0;
+        for (int i = 0; i < arr.length; i++) {
+            if (arr[i] >= 2) {
+                x += 1;
             }
         }
-        if (x==arr.length) {
+        if (x == arr.length) {
             return true;
         }
         return false;

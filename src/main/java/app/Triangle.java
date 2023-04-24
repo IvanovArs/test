@@ -3,8 +3,13 @@ package app;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import io.github.humbleui.skija.Canvas;
+import io.github.humbleui.skija.Paint;
 import lombok.Getter;
+import misc.CoordinateSystem2d;
+import misc.CoordinateSystem2i;
 import misc.Misc;
+import misc.Vector2i;
 
 import java.util.Objects;
 
@@ -81,6 +86,7 @@ public class Triangle {
                 Math.abs((dx2 * dx2 + dy2 * dy2) - (dx3 * dx3 + dy3 * dy3)) < 0.01 &&
                 Math.abs((dx3 * dx3 + dy3 * dy3) - (dx1 * dx1 + dy1 * dy1)) < 0.01;
     }
+
     public boolean isNotEquilateral() {
         double dx1 = a.pos.x - b.pos.x;
         double dy1 = a.pos.y - b.pos.y;
@@ -98,5 +104,18 @@ public class Triangle {
         return Math.abs((dx1 * dx1 + dy1 * dy1) - (dx2 * dx2 + dy2 * dy2)) > 0.01 ||
                 Math.abs((dx2 * dx2 + dy2 * dy2) - (dx3 * dx3 + dy3 * dy3)) > 0.01 ||
                 Math.abs((dx3 * dx3 + dy3 * dy3) - (dx1 * dx1 + dy1 * dy1)) > 0.01;
+    }
+
+    public void render(Canvas canvas, CoordinateSystem2i windowCS, CoordinateSystem2d ownCS) {
+        try (Paint paint = new Paint()) {
+            // вершины треугольника
+            Vector2i pointA = windowCS.getCoords(a.pos, ownCS);
+            Vector2i pointB = windowCS.getCoords(b.pos, ownCS);
+            Vector2i pointC = windowCS.getCoords(c.pos, ownCS);
+            // рисуем его стороны
+            canvas.drawLine(pointA.x, pointA.y, pointB.x, pointB.y, paint);
+            canvas.drawLine(pointB.x, pointB.y, pointC.x, pointC.y, paint);
+            canvas.drawLine(pointC.x, pointC.y, pointA.x, pointA.y, paint);
+        }
     }
 }

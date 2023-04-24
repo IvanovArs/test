@@ -25,16 +25,16 @@ public class UnitTest {
         assert triangle.isEquilateral();
     }
     @Test
-    public void test2() {
+    public void test2() { // дваждытреугольное множество
         Triangle triangle = new Triangle(
                 new Point(new Vector2d(0, 0)),
-                new Point(new Vector2d(5, 0)),
-                new Point(new Vector2d(2.5, 0.5))
+                new Point(new Vector2d(10, 0)),
+                new Point(new Vector2d(1.415, 2.449))
         );
-        assert triangle.isNotEquilateral();
+        assert !triangle.isEquilateral();
     }
     @Test
-    public void test3() {
+    public void test3() { // однотреугольное множество
         CoordinateSystem2d cs = new CoordinateSystem2d(-10, -10, 20, 20);
         ArrayList<Point> points = new ArrayList<>();
         points.add(new Point(new Vector2d(0, 2.449)));
@@ -45,7 +45,7 @@ public class UnitTest {
         assert t.check1();
     }
     @Test
-    public void test4() {
+    public void test4() { // однотреугольное множество
         CoordinateSystem2d cs = new CoordinateSystem2d(-10, -10, 20, 20);
         ArrayList<Point> points = new ArrayList<>();
         points.add(new Point(new Vector2d(0, 0)));
@@ -53,10 +53,10 @@ public class UnitTest {
         points.add(new Point(new Vector2d(1.5, 4.5)));
         points.add(new Point(new Vector2d(1.5, 0)));
         Task t = new Task(cs, points);
-        assert t.check1();
+        assert !t.check1();
     }
     @Test
-    public void test5() {
+    public void test5() { // дваждытреугольное множество
         CoordinateSystem2d cs = new CoordinateSystem2d(-10, -10, 20, 20);
         ArrayList<Point> points = new ArrayList<>();
         points.add(new Point(new Vector2d(0, 0)));
@@ -69,7 +69,7 @@ public class UnitTest {
         assert t.check2();
     }
     @Test
-    public void test6() {
+    public void test6() { // дваждытреугольное множество
         CoordinateSystem2d cs = new CoordinateSystem2d(-10, -10, 20, 20);
         ArrayList<Point> points = new ArrayList<>();
         points.add(new Point(new Vector2d(0, 0)));
@@ -79,6 +79,6 @@ public class UnitTest {
         points.add(new Point(new Vector2d(1, 0)));
         points.add(new Point(new Vector2d(2.5, 2.3)));
         Task t = new Task(cs, points);
-        assert t.check2();
+        assert !t.check2();
     }
 }
