@@ -105,7 +105,6 @@ public class Task {
         points.clear();
         solved = false;
     }
-
     public void solve() {
         for (int i = 0; i < points.size(); i++) {
             for (int j = i + 1; j < points.size(); j++) {
@@ -117,7 +116,6 @@ public class Task {
                 }
             }
         }
-
         solved = check2();
     }
 

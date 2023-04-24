@@ -135,7 +135,6 @@ public List<Button> buttons;
                 true, true);
         save.setOnClick(PanelRendering::save);
         buttons.add(save);
-
         Button clear = new Button(
                 window, false, backgroundColor, PANEL_PADDING,
                 6, 7, 0, 6, 3, 1, "Очистить",
@@ -162,7 +161,6 @@ public List<Button> buttons;
         });
         buttons.add(solve);
     }
-
     /**
      * Обработчик событий
      *

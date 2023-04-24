@@ -176,7 +176,6 @@ public class Application implements Consumer<Event> {
             }
         }
     }
-
     public void paint(Canvas canvas, CoordinateSystem2i windowCS) {
         canvas.save();
         canvas.clear(APP_BACKGROUND_COLOR);
