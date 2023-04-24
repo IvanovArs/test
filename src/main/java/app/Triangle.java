@@ -11,6 +11,7 @@ import misc.CoordinateSystem2i;
 import misc.Misc;
 import misc.Vector2i;
 
+import java.awt.*;
 import java.util.Objects;
 
 public class Triangle {
@@ -37,7 +38,7 @@ public class Triangle {
      */
     @JsonIgnore
     public int getColor() {
-        return Misc.getColor(0xCC, 0x00, 0x00, 0xFF);
+        return Misc.getColor(0xCC, 0x00, 0xFF, 0x00);
     }
 
 

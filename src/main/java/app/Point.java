@@ -35,7 +35,7 @@ public class Point {
      */
     @JsonIgnore
     public int getColor() {
-            return Misc.getColor(0xCC, 0x00, 0x00, 0xFF);
+            return Misc.getColor(0xCC, 0x00, 0xFF, 0x00);
     }
 
     /**
